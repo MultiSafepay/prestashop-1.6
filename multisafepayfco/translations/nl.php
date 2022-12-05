@@ -1,0 +1,35 @@
+<?php
+
+global $_MODULE;
+$_MODULE = [];
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_9ec07eba31e1a709d68ebe33362d1900'] = 'MultiSafepay FastCheckout';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_ead1c453dd02e1637bafc472e552a55a'] = 'Accepteer FastCheckout betalingen via MultiSafepay';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Weet u zeker dat u uw gegevens wilt verwijderen?';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_c888438d14855d7d96a2724ee9c306bd'] = 'Instellingen bijgewerkt';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_c9cc8cce247e49bae79f15173ce97354'] = 'Opslaan';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_630f6dc397fe74e52d5189e2c80f282b'] = 'Terug naar overzicht';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_ff73074ccafb0bcfc1c49a09ceb6532f'] = 'Instellingen account';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_d876ff8da67c3731ae25d8335a4168b4'] = 'API-Sleutel';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_6e147eeb6094904219d0987806735f5c'] = 'De API-Sleutel van de betreffende website in het MultiSafepay account. Indien leeg, dan wordt de API-Sleutel van de Standaard MultiSafepay configuratie gebruikt.';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_b02b464fbe0b40f0c481f17894f66747'] = 'Test account';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_138780f997031206bb8ee5390e36e08a'] = 'Gebruik LIVE-account als de API-Sleutel van een Live-account is. Gebruik TEST-account als de API-Sleutel van een Test-account is.';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_638ce87fab4d636ed19f2517b40a48fd'] = 'Live account';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_de62775a71fc2bf7a13d7530ae24a7ed'] = 'Algemene instellingen';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_035416b88bed22c2a28c3b00643fb941'] = 'Toon FastCheckout knop in de winkelwagen';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_00d23a76e43b46dae9ec7aa9dcbebb32'] = 'geactiveerd';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_b9f5c797ebbf55adccdd8539a65a0241'] = 'gedeactiveerd';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_9c0c195ed179a59ec1464cb3dfa12552'] = 'Wanneer dient ordebevestiging verstuurd te worden';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_06c4dfad49f81bc2548e1fcd53b4c662'] = 'Wanneer dient de order te worden aangemaakt';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_fb21afb772b63da28508b0789c3ee910'] = 'Na betaling van de order';
+$_MODULE['<{multisafepayfco}default-bootstrap>multisafepayfco_8dcb140a970dee466d3010189e70d07b'] = 'Als de order wordt aangemaakt';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_ea9cf7e47ff33b2be14e6dd07cbcefc6'] = 'Verzending';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_f1d3b424cd68795ecaa552883759aceb'] = 'Samenvatting bestelling';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_1d6630038de21ada075ed0a31275d57e'] = 'FastCheckout';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_638fc6b534e1560b524e1da42f16ce80'] = 'FastCheckout';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_b4892dea5fdf9482d161bcaef0f25c62'] = 'U heeft gekozen om af te rekenen middels ';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_ed57a2014f48893f7dd212a63d04affa'] = 'Het totale orderbedrag is';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_ed22ee154638b5264b512354ad82a8f5'] = '(Incl. BTW)';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_4a4c2e30df9cc2e90dd4012312ee3745'] = 'Wijzig betaalmethode';
+$_MODULE['<{multisafepayfco}default-bootstrap>validation_fco_7395559a94fa7a25907a155cda78afa0'] = 'Bevestig order';
+$_MODULE['<{multisafepayfco}default-bootstrap>fco_shortcut_form_9ec07eba31e1a709d68ebe33362d1900'] = 'MultiSafepay FastCheckout';
+$_MODULE['<{multisafepayfco}default-bootstrap>payment_638fc6b534e1560b524e1da42f16ce80'] = 'FastCheckout';

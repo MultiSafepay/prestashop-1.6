@@ -1,0 +1,412 @@
+.multisafepay-info {
+    margin: 0 0 0 0px;
+    font-familly: Open Sans, Arial, sans-serif;
+}
+
+.multisafepay-info img {
+    display: block;
+    margin: 20px 20px 20px 0px;
+}
+
+.multisafepay {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.multisafepay-info a {
+    color: #006d9d;
+}
+
+.multisafepay-info a:hover {
+    color: black;
+}
+
+.multisafepay-payement-info {
+    width: 400px;
+    margin-bottom: 20px;
+    background: none repeat scroll 0 0 #E3E0D2;
+    padding: 0 20px 20px;
+    font-size: 15px;
+}
+
+
+.multisafepay-payement-info.left {
+    float: left;
+    margin-right: 20px;
+}
+
+.multisafepay-payement-info.right {
+    float: left;
+    margin-right: 20px;
+    text-align: left;
+    min-height: 182px;
+}
+
+.multisafepay-payement-info.right-full {
+    width: 860px;
+    float: left;
+    min-height: 266px;
+}
+
+.multisafepay-blue-button {
+    background: none repeat scroll 0 0 #00adef;
+    -moz-box-sizing: border-box;
+    border-radius: 3em 3em 3em 3em;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.25em;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 1em;
+}
+
+.multisafepay-blue-button:hover {
+    color: #FFFFFF;
+    background: none repeat scroll 0 0 #006d9d;
+}
+
+#swifttagcontainer58vgtqrmbb {
+    background: #ffffff !important;
+}
+
+
+label#multisafepay, .msp-inputs .msp-input-radio span#multisafepay {
+    max-width: 130px;
+    font-size: 15px;
+    color: #777;
+}
+
+.msp-inputs .msp-input-radio span#multisafepay {
+    margin-top: 0;
+}
+
+input#multisafepay {
+    font-size: 15px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+span#multisafepay {
+    width: 400px;
+    display: block;
+    text-align: left;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+span#multisafepay_fee {
+    color: #777;
+}
+
+#multisafepay_button {
+    border: none;
+    color: white;
+    padding: 40px 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 92px;
+    right: 5px;
+    margin-top: -50px;
+    top: 50%;
+    position: absolute;
+    background-color: #fbfbfb;
+    outline: none;
+}
+
+p.payment_module:hover #multisafepay_button {
+    background-color: #f6f6f6;
+}
+
+.show-phone {
+    display: none !important;
+}
+
+.hide-phone {
+    display: block !important;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+@media (max-width: 767px ) {
+    p.payment_module a.cash.multisafepay-payment-method:after {
+        display: none;
+    }
+
+    input#multisafepay {
+        width: calc(100% + 20px);
+    }
+
+    .show-phone {
+        display: block !important;
+    }
+
+    .hide-phone {
+        display: none !important;
+    }
+}
+
+input[name="bankaccount"] {
+    width: 20rem;
+}
+
+.msp-inputs {
+    grid-template-columns: auto auto;
+    display: grid;
+    max-width: 300px;
+}
+
+.msp-inputs label {
+    padding-right: 2rem;
+}
+
+.msp-inputs input[name="birthday"],
+.msp-inputs input[name="phone"] {
+    width: 120px;
+}
+
+@media (max-width: 991px ) {
+    .msp-inputs {
+        grid-template-columns: auto;
+        display: block;
+        max-width: 300px;
+    }
+
+    .msp-inputs label {
+        padding-right: 2rem;
+    }
+}
+
+.msp-inputs span, .msp-inputs label, p.payment_module a .msp-inputs span {
+    font-weight: normal;
+}
+
+.msp-inputs:empty {
+    margin-top: 0;
+}
+
+.msp-inputs {
+    margin-top: 15px;
+}
+
+.payment_module .multisafepay-payment-module {
+    background-position: center;
+    background-size: 64px;
+    background-repeat: no-repeat;
+    background-position-x: 15px;
+    background-position-y: center;
+
+    cursor: pointer;
+}
+
+.payment_module .multisafepay-payment-module:after {
+    display: block;
+    content: "\f054";
+    position: absolute;
+    right: 15px;
+    margin-top: -11px;
+    top: 50%;
+    font-family: "FontAwesome";
+    font-size: 25px;
+    height: 22px;
+    width: 14px;
+    color: #777;
+}
+
+.payment_module .multisafepay-payment-module-ideal img {
+    max-width: 64px;
+}
+
+.payment_module {
+    background-color: #fbfbfb !important;
+}
+
+.payment_module:hover {
+    background-color: #f6f6f6 !important;
+}
+
+/* PAYMENT MODAL */
+.multisafepay-modal-container {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.multisafepay-modal-container.modal-open {
+    display: block;
+
+    position: fixed;
+    z-index: 100000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.multisafepay-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    opacity: 1;
+    max-width: 400px;
+    max-height: 90vh;
+    width: 100%;
+
+    background-color: white;
+    border-radius: 15px;
+}
+
+.multisafepay-modal-content {
+    display: grid;
+    grid-auto-flow: row;
+
+    gap: 1em 0;
+}
+
+.multisafepay-modal-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    padding: 2em 2em 0 2em;
+}
+
+.multisafepay-modal-header .icon-title .multisafepay-modal-icon {
+    max-height: 48px;
+}
+
+.multisafepay-modal-header .icon-title .multisafepay-modal-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+.multisafepay-modal-header .close {
+    justify-self: end;
+    align-self: start;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.multisafepay-modal-body {
+    overflow-y: scroll;
+    padding: 2em;
+    max-height: 70vh;
+}
+
+.test-spacer {
+    height: 1000px;
+}
+
+.multisafepay-modal-fields label {
+    display: flex;
+    flex-direction: column;
+    text-transform: capitalize;
+    margin: 0.5em 0;
+}
+
+.multisafepay-modal-fields p {
+    color: #333;
+}
+
+.multisafepay-modal-fields select {
+    padding: 0.5em 0.5em;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.multisafepay-modal-fields input {
+    padding: 0.5em 0.5em;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.multisafepay-modal-footer {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #f0f0f0!important;
+    padding: 1em 2em;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.multisafepay-pay-button {
+    background-color: #00adeb;
+    color: white!important;
+    border-radius: 5px;
+    transition: all 0.2s;
+    border: none
+}
+
+.multisafepay-pay-button:hover {
+    border:none;
+    background-color: #004b6f;
+}
+
+.multisafepay-cancel-button {
+    border: none;
+}
+
+.multisafepay-cancel-button:hover {
+    text-decoration: underline;
+}
+
+.multisafepay-modal-backdrop {
+    width: 100vw;
+    height: 100vh;
+}
+
+.multisafepay-radio {
+    position: initial!important;
+    opacity: 1!important;
+}
+
+.msp-ui-checkbox {
+    position: initial !important;
+    opacity: 1 !important;
+}
+
+.multisafepay-token-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.multisafepay-token-container label {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.multisafepay-token-container label .multisafepay-radio{
+    margin: 0;
+}
+
+.multisafepay-token-container .multisafepay-tokens {
+    margin-bottom: 1em;
+}
+
+.multisafepay-modal-notification {
+    font-weight: 500;
+    padding: 0.2em 0;
+}
+
+.multisafepay-delete-token {
+    background: transparent;
+    border: none;
+}
+
+.select2-container {
+    z-index: 10000000;
+}
+
+.multisafepay-terms-checkbox {
+    flex-direction: row!important;
+    margin-top: 1em!important;
+}

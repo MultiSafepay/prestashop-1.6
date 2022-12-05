@@ -1,0 +1,14 @@
+{
+    "name": "multisafepay/prestashop-1.6",
+    "description": "MultiSafepay module for PrestaShop 1.6",
+    "type": "prestashop-module",
+    "keywords" : [ "prestashop"],
+    "license": "MIT",
+    "scripts": {
+        "php-cs-fixer-init": "@php vendor/bin/prestashop-coding-standards cs-fixer:init",
+        "php-cs-fixer": "@php vendor/bin/php-cs-fixer fix ./multisafepay"
+    },
+    "require-dev": {
+        "prestashop/php-dev-tools": "^4.3"
+    }
+}
