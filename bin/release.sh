@@ -19,7 +19,7 @@ mkdir "$RELEASE_FOLDER"
 
 for dir in "multisafepay"*;
 do
-  git archive --format=zip -9 --output="$RELEASE_FOLDER/$FILENAME_PREFIX-$dir.zip" HEAD
+  git archive --format=zip -9 --output="$RELEASE_FOLDER/$FILENAME_PREFIX-$dir.zip" HEAD $dir
 done
 
 git archive --format=zip -9 --output="$RELEASE_FOLDER/$FILENAME_PREFIX.zip" HEAD
