@@ -1,0 +1,32 @@
+on:
+  push:
+    tags:
+      - '*' # It will create for all tags a draft release
+name: Upload Release Assets
+jobs:
+  build:
+    name: Upload Release Assets PS 1.6
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.2'
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        run: ./bin/release.sh ${{ steps.get_version.outputs.VERSION }}
+      - name: Upload Release Asset
+        run: |
+          set -x
+          assets=()
+          for asset in ./.dist/*.zip; do
+            assets+=("-a" "$asset")
+          done
+          tag_name="${GITHUB_REF##*/}"
+          hub release create "${assets[@]}" -m "Release $tag_name" "$tag_name" -d
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
