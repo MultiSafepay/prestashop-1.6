@@ -17,17 +17,26 @@ See MultiSafepay Docs – [PrestaShop 1.6](https://docs.multisafepay.com/docs/pr
 ## Prerequisites
 
 - You will need a [MultiSafepay account](https://testmerchant.multisafepay.com/signup). Consider a test account first.
-- PrestaShop version 1.6
+- PrestaShop version 1.6 (tested on PHP version 5.6).
 
 ## Installation and configuration
 
-1. Unpack the contents of the .zip archive and upload the **Modules** folder via SFTP to the PrestaShop root directoy, merging the two folders.
-2. Sign in to your PrestaShop 1.6 backend.
-3. Go to **Modules and services** > **Payments and gateways**.
-    **Note:** You must install and configure the MultiSafepay Core Module (MultiSafepay) because all payment methods require certain settings and/or the API key in the core module.
+### Via the PrestaShop backoffice
+1. Sign in to your PrestaShop 1.6 backoffice.
+2. Go to **Modules and Services**.
+3. Click on "Add a new module" in the top right corner.
+4. Upload the zipfile of the module you want to install.
+**Note:** Upload, install and configure the MultiSafepay core module (MultiSafepay) first.
+All payment methods require certain settings from the core module.
+
+### Via FTP/SFTP
+1. Unpack the zipfiles and upload them via SFTP to the PrestaShop modules directory.
+2. Sign in to your PrestaShop 1.6 backoffice.
+3. Go to **Modules and services** and search for MultiSafepay.
+    **Note:** You must install and configure the MultiSafepay Core Module (MultiSafepay) first because all payment methods require certain settings and/or the API key in the core module.
 4. In the next screen, proceed with the installation.
 5. Enter your API key, and then click **Save**.
-6. On the **Payments** tab, enable the relevant payment methods.
+6. Go back to the list of payment gateways and install the other modules.
 
 For more information, MultiSafepay Docs – [PrestaShop 1.6](https://docs.multisafepay.com/docs/prestashop-1-6).
 
