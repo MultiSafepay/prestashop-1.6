@@ -236,10 +236,6 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
               'shopping_cart' => (isset($this->shopping_cart) ? $this->shopping_cart : []),
               'checkout_options' => (isset($this->checkout_options) ? $this->checkout_options : []),
 
-              'google_analytics' => [
-                  'account' => 'UA-XXXXXXXXX',
-              ],
-
               'plugin' => [
                   'shop' => 'PrestaShop',
                   'shop_version' => 'PrestaShop ' . _PS_VERSION_,
