@@ -26,7 +26,7 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
 
     public function postProcess()
     {
-        $plugin_version = '3.9.0';
+        $plugin_version = '3.10.0';
 
         if ($this->context->cart->id_customer == 0
             || $this->context->cart->id_address_delivery == 0

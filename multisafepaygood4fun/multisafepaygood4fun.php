@@ -28,7 +28,7 @@ class Multisafepaygood4fun extends PaymentModule
         }
         $this->name = 'multisafepaygood4fun';
         $this->tab = 'payments_gateways';
-        $this->version = '3.9.0';
+        $this->version = '3.10.0';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;
