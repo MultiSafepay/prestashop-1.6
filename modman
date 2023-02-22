@@ -50,3 +50,4 @@ multisafepayalipay modules/multisafepayalipay
 multisafepayalipayplus modules/multisafepayalipayplus
 multisafepaymybank modules/multisafepaymybank
 multisafepayamazonpay modules/multisafepayamazonpay
+multisafepaybnplinstallments modules/multisafepaybnplinstallments
