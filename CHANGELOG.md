@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.10.1
+Release date: Jun 1st, 2023
+
+### Fixed
++ PLGPRSS-484: Fix CSS and JS loading when OPC is enabled
+
+***
+
 ## 3.10.0
 Release date: Feb 22nd, 2023
 
