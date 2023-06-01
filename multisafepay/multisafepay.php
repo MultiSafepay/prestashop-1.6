@@ -552,7 +552,7 @@ class MultiSafepay extends PaymentModule
 
     public function hookHeader()
     {
-        if (Dispatcher::getInstance()->getController() !== 'order') {
+        if (Dispatcher::getInstance()->getController() !== 'order' && Dispatcher::getInstance()->getController() !== 'orderopc') {
             return;
         }
         $this->context->controller->addCSS(Tools::getShopDomainSsl(true, true) . __PS_BASE_URI__ . 'modules/multisafepay/views/css/multisafepay.css', 'all');
