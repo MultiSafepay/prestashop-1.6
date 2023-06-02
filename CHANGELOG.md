@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ***
 
 ## 3.10.2
-Release date: Jun 1st, 2023
+Release date: Jun 2nd, 2023
 
 ### Fixed
 + PLGPRSS-486: Fix the notification process to update the order status, when multiple orders are being created after PrestaShop splits the shopping cart into several orders
