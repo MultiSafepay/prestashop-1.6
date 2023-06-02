@@ -13,7 +13,7 @@ $_MODULE['<{multisafepayvisa}default-bootstrap>multisafepayvisa_78e3657dd523e389
 $_MODULE['<{multisafepayvisa}default-bootstrap>validation_visa_c453a4b8e8d98e82f35b67f433e3b4da'] = 'Betaling';
 $_MODULE['<{multisafepayvisa}default-bootstrap>validation_visa_f1d3b424cd68795ecaa552883759aceb'] = 'Samenvatting bestelling';
 $_MODULE['<{multisafepayvisa}default-bootstrap>validation_visa_93d207a5540aa38f404ae593385a7b64'] = 'VISA';
-$_MODULE['<{multisafepayvisa}default-bootstrap>validation_visa_47a475d8ebfc31f711aa645d2ef566a5'] = 'VISA CreditCard';
+$_MODULE['<{multisafepayvisa}default-bootstrap>validation_visa_47a475d8ebfc31f711aa645d2ef566a5'] = 'VISA';
 $_MODULE['<{multisafepayvisa}default-bootstrap>validation_visa_60edb6bca4afe3b780dc7c577a8c3732'] = 'U heeft gekozen om te betalen middels VISA';
 $_MODULE['<{multisafepayvisa}default-bootstrap>validation_visa_ed57a2014f48893f7dd212a63d04affa'] = 'Het totale orderbedrag is';
 $_MODULE['<{multisafepayvisa}default-bootstrap>validation_visa_ed22ee154638b5264b512354ad82a8f5'] = '(Incl. BTW)';

@@ -42,7 +42,7 @@ class MultiSafepayCreditcard extends PaymentModule
         parent::__construct();
 
         $this->gateway = 'CREDITCARD';
-        $this->displayName = $this->l('Credit cards');
+        $this->displayName = $this->l('Card payment');
         $this->description = $this->l('This module allows you to accept payments by MultiSafepay.');
         $this->confirmUninstall = $this->l('Are you sure you want to delete these details?');
 
