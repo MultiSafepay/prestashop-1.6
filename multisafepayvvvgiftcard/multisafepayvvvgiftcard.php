@@ -28,7 +28,7 @@ class Multisafepayvvvgiftcard extends PaymentModule
         }
         $this->name = 'multisafepayvvvgiftcard';
         $this->tab = 'payments_gateways';
-        $this->version = '3.10.1';
+        $this->version = '3.10.2';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;

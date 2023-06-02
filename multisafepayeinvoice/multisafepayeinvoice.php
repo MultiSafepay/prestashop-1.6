@@ -28,7 +28,7 @@ class MultisafepayEinvoice extends PaymentModule
         }
         $this->name = 'multisafepayeinvoice';
         $this->tab = 'payments_gateways';
-        $this->version = '3.10.1';
+        $this->version = '3.10.2';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;
