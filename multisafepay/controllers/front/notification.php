@@ -205,25 +205,28 @@ class MultisafepayNotificationModuleFrontController extends ModuleFrontControlle
     private function updateOrder()
     {
         // Order should already exists
-        $order = new Order(Order::getOrderByCartId((int) $this->cart_id));
+        $orderCollection = new PrestaShopCollection('Order');
+        $orderCollection->where('id_cart', '=', (int) $this->cart_id);
 
-        $history = new OrderHistory();
-        $history->id_order = (int) $order->id;
+        foreach ($orderCollection->getResults() as $order) {
+            $history = new OrderHistory();
+            $history->id_order = (int) $order->id;
 
-        // If current order-state is not a MultiSafepay order-state, then do not update the status anymore.
-        if (!array_search($order->getCurrentState(), $this->statussen)) {
-            return;
-        }
+            // If current order-state is not a MultiSafepay order-state, then do not update the status anymore.
+            if (!array_search($order->getCurrentState(), $this->statussen)) {
+                return;
+            }
 
-        if ($order->getCurrentState() != $this->statussen[$this->status]) {
-            $history->changeIdOrderState((int) $this->statussen[$this->status], $order->id);
-            $history->add();
-        }
+            if ($order->getCurrentState() != $this->statussen[$this->status]) {
+                $history->changeIdOrderState((int) $this->statussen[$this->status], $order->id);
+                $history->add();
+            }
 
-        if ($this->status == 'completed') {
-            $payments = $order->getOrderPaymentCollection();
-            $payments[0]->transaction_id = $this->transaction_id;
-            $payments[0]->update();
+            if ($this->status == 'completed') {
+                $payments = $order->getOrderPaymentCollection();
+                $payments[0]->transaction_id = $this->transaction_id;
+                $payments[0]->update();
+            }
         }
     }
 
