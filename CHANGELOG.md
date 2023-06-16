@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.10.3
+Release date: Jun 16th, 2023
+
+### Fixed
++ PLGPRSS-488: Fix an issue where the customer is being redirected to the shop but the shopping cart is not being duplicated when the pre-transaction is cancelled on the payment page
+
+***
+
 ## 3.10.2
 Release date: Jun 2nd, 2023
 
