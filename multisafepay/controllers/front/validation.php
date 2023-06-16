@@ -187,7 +187,7 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
               'gateway' => $gateway,
               'seconds_active' => Configuration::get('MULTISAFEPAY_SECONDS_ACTIVE'),
               'payment_options' => [
-                  'notification_url' => $url_prefix . '?fc=module&module=' . $this->module->name . '&controller=notification&type=initial',
+                  'notification_url' => $url_prefix . '?fc=module&module=' . $this->module->name . '&controller=notification&id_cart=' . $this->context->cart->id . '&type=initial',
                   'redirect_url' => $url_prefix . '?fc=module&module=' . $this->module->name . '&controller=redirect' .
                                                                                                    '&key=' . $secure_key .
                                                                                                    '&id_cart=' . $this->context->cart->id .
