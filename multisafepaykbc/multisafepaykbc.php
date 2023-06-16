@@ -29,7 +29,7 @@ class MultisafepayKbc extends PaymentModule
 
         $this->name = 'multisafepaykbc';
         $this->tab = 'payments_gateways';
-        $this->version = '3.10.2';
+        $this->version = '3.10.3';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;
