@@ -40,6 +40,7 @@ class MultisafepayNotificationModuleFrontController extends ModuleFrontControlle
                 'completed' => Configuration::get('MULTISAFEPAY_OS_COMPLETED'),
                 'uncleared' => Configuration::get('MULTISAFEPAY_OS_UNCLEARED'),
                 'cancelled' => Configuration::get('MULTISAFEPAY_OS_CANCELLED'),
+                'canceled' => Configuration::get('MULTISAFEPAY_OS_CANCELLED'),
                 'void' => Configuration::get('MULTISAFEPAY_OS_VOID'),
                 'declined' => Configuration::get('MULTISAFEPAY_OS_DECLINED'),
                 'refunded' => Configuration::get('MULTISAFEPAY_OS_REFUNDED'),
@@ -96,6 +97,10 @@ class MultisafepayNotificationModuleFrontController extends ModuleFrontControlle
                             break;
                     }
                 }
+            } elseif (Tools::getValue('payload_type') === 'pretransaction') {
+                $this->cart_id = Tools::getValue('id_cart');
+                $this->status = $this->transactie->status;
+                $this->updateOrder();
             }
         }
 
@@ -133,6 +138,19 @@ class MultisafepayNotificationModuleFrontController extends ModuleFrontControlle
                     $var1 = Tools::jsonDecode($this->transactie->var1);
                     $cart_id = $var1->id_cart;
 
+                    $lastCart = new Cart($cart_id);
+                    $newCart = $lastCart->duplicate();
+
+                    if (!$newCart || !Validate::isLoadedObject($newCart['cart'])) {
+                        $errors[] = Tools::displayError('Sorry. We cannot renew your order.');
+                    } elseif (!$newCart['success']) {
+                        $errors[] = Tools::displayError('Some items are no longer available, and we are unable to renew your order.');
+                    } else {
+                        $this->context->cookie->id_cart = $newCart['cart']->id;
+                        $this->context->cookie->write();
+                    }
+                } else {
+                    $cart_id = Tools::getValue('id_cancel_cart');
                     $lastCart = new Cart($cart_id);
                     $newCart = $lastCart->duplicate();
 
@@ -236,6 +254,5 @@ class MultisafepayNotificationModuleFrontController extends ModuleFrontControlle
 
         $msg = 'MultiSafepay reference: ' . $this->order_id;
         $this->module->validateOrder((int) $this->cart_id, $this->statussen[$this->status], $this->paid, $paymentMethodName, $msg, [], null, false, $this->secure_key);
-        //        Tools::redirect('index.php?controller=order-confirmation&id_cart='.(int)($this->cart_id).'&id_module='.(int)($this->module->id).'&id_order='.$this->order_id.'&key='.$this->secure_key);
     }
 }
