@@ -34,7 +34,7 @@ class MultiSafepay extends PaymentModule
     {
         $this->name = 'multisafepay';
         $this->tab = 'payments_gateways';
-        $this->version = '3.10.3';
+        $this->version = '3.10.4';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;

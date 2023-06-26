@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.10.4
+Release date: Jun 26th, 2023
+
+### Fixed
++ PLGPRSS-490: Add payment method name and PSP ID into Order Payment object
+
+***
+
 ## 3.10.3
 Release date: Jun 16th, 2023
 
