@@ -75,17 +75,17 @@ class MultiSafepay extends PaymentModule
         Configuration::updateValue('MULTISAFEPAY_WHEN_CREATE_ORDER', 'After_Confirmation');
 
         $multisafepay_stats = [
-            'new_order' => ['new_order',          false,  '#4169e1',  false,  '',                 false,  false],
-            'initialized' => ['initialized',        false,  '#ff8c00',  false,  '',                 false,  false],
-            'completed' => ['completed',          true,   '#32cd32',  true,   'payment',          true,   true],
-            'uncleared' => ['uncleared',          false,  '#32cd32',  false,  '',                 false,  false],
-            'void' => ['void',               true,   '#dc143c',  false,  'order_canceled',   false,  false],
-            'cancelled' => ['cancelled',          true,   '#dc143c',  false,  'order_canceled',   false,  false],
-            'expired' => ['expired',            false,  '#dc143c',  false,  '',                 false,  false],
-            'declined' => ['declined',           false,  '#8f0621',  false,  '',                 false,  false],
-            'shipped' => ['shipped',            false,  '#8f0621',  false,  '',                 false,  false],
-            'refunded' => ['refunded',           true,   '#ec2e15',  false,  'refund',           false,  false],
-            'partial_refunded' => ['partial_refunded',   true,   '#ec2e15',  false,  'refund',           false,  false],
+            'new_order' => ['new_order', false, '#4169e1', false, '', false, false],
+            'initialized' => ['initialized', false, '#ff8c00', false, '', false, false],
+            'completed' => ['completed', true, '#32cd32',  true, 'payment', true, true],
+            'uncleared' => ['uncleared', false, '#32cd32', false, '', false, false],
+            'void' => ['void', true, '#dc143c', false, 'order_canceled', false, false],
+            'cancelled' => ['cancelled', true, '#dc143c', false, 'order_canceled', false, false],
+            'expired' => ['expired', false, '#dc143c', false, '', false, false],
+            'declined' => ['declined', false, '#8f0621', false, '', false, false],
+            'shipped' => ['shipped', false, '#8f0621', false,  '', false, false],
+            'refunded' => ['refunded', true, '#ec2e15', false, 'refund', false, false],
+            'partial_refunded' => ['partial_refunded', true, '#ec2e15', false, 'refund', false, false],
         ];
 
         foreach ($multisafepay_stats as $status => $value) {
@@ -202,22 +202,23 @@ class MultiSafepay extends PaymentModule
         $helper->show_toolbar = true;
         $helper->toolbar_scroll = true;
         $helper->submit_action = 'submit' . $this->name;
-        $helper->toolbar_btn = ['save' => [
-                                                       'desc' => $this->l('Save'),
-                                                       'href' => AdminController::$currentIndex . '&configure=' . $this->name . '&save' . $this->name . '&token=' . Tools::getAdminTokenLite('AdminModules'),
-                                                   ],
-                                                   'back' => [
-                                                       'href' => AdminController::$currentIndex . '&token=' . Tools::getAdminTokenLite('AdminModules'),
-                                                       'desc' => $this->l('Back to list'),
-                                                    ], ];
-
+        $helper->toolbar_btn = [
+            'save' => [
+                'desc' => $this->l('Save'),
+                'href' => AdminController::$currentIndex . '&configure=' . $this->name . '&save' . $this->name . '&token=' . Tools::getAdminTokenLite('AdminModules'),
+            ],
+            'back' => [
+                'href' => AdminController::$currentIndex . '&token=' . Tools::getAdminTokenLite('AdminModules'),
+                'desc' => $this->l('Back to list'),
+            ],
+        ];
         $order_states_db = OrderState::getOrderStates($this->context->language->id);
         $order_states = [];
         foreach ($order_states_db as $order_state) {
             $order_states[] = [
-                                'id' => $order_state['id_order_state'],
-                                'name' => $order_state['name'],
-                              ];
+                'id' => $order_state['id_order_state'],
+                'name' => $order_state['name'],
+            ];
         }
 
         $fields_form = [];
@@ -245,17 +246,17 @@ class MultiSafepay extends PaymentModule
                     'required' => true,
                     'hint' => $this->l('Use Live-account the API-Key is from your MultiSafepay LIVE-account.<br/>Use Test -account if the API-Key is from your MultiSafepay TEST-account.'),
                     'values' => [
-                                            [
-                                                'id' => 'test',
-                                                'value' => true,
-                                                'label' => $this->l('Test account'),
-                                            ],
-                                            [
-                                                'id' => 'prod',
-                                                'value' => false,
-                                                'label' => $this->l('Live account'),
-                                            ],
-                                        ],
+                        [
+                            'id' => 'test',
+                            'value' => true,
+                            'label' => $this->l('Test account'),
+                        ],
+                        [
+                            'id' => 'prod',
+                            'value' => false,
+                            'label' => $this->l('Live account'),
+                        ],
+                    ],
                 ],
              ],
         ];
@@ -275,19 +276,18 @@ class MultiSafepay extends PaymentModule
                     'is_bool' => true,
                     'hint' => $this->l('Use to debug into the MultiSafepay logfile.'),
                     'values' => [
-                                            [
-                                                'id' => 'true',
-                                                'value' => true,
-                                                'label' => $this->l('Yes'),
-                                            ],
-                                            [
-                                                'id' => 'false',
-                                                'value' => false,
-                                                'label' => $this->l('No'),
-                                            ],
-                                        ],
+                        [
+                            'id' => 'true',
+                            'value' => true,
+                            'label' => $this->l('Yes'),
+                        ],
+                        [
+                            'id' => 'false',
+                            'value' => false,
+                            'label' => $this->l('No'),
+                        ],
+                    ],
                 ],
-
                 [
                     'type' => 'text',
                     'class' => 'fixed-width-sm',
@@ -296,21 +296,29 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_TIME_ACTIVE',
                     'required' => false,
                 ],
-
                 [
                     'type' => 'select',
                     'name' => 'MULTISAFEPAY_TIME_LABEL',
                     'required' => false,
                     'options' => [
-                                            'query' => [['id' => 'days',       'name' => $this->l('Days')],
-                                                                ['id' => 'hours',      'name' => $this->l('Hours')],
-                                                                ['id' => 'seconds',    'name' => $this->l('Seconds')],
-                                                ],
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => [
+                            [
+                                'id' => 'days',
+                                'name' => $this->l('Days')
+                            ],
+                            [
+                                'id' => 'hours',
+                                'name' => $this->l('Hours')
+                            ],
+                            [
+                                'id' => 'seconds',
+                                'name' => $this->l('Seconds')
+                            ],
+                        ],
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
-
                 [
                     'type' => 'select',
                     'label' => $this->l('Moment of order creation'),
@@ -318,17 +326,26 @@ class MultiSafepay extends PaymentModule
                     'required' => false,
                     'hint' => $this->l('At what moment should the orders be created?'),
                     'options' => [
-                                            'query' => [['id' => 'After_Confirmation',                     'name' => $this->l('After order is confirmed')],
-                                                                ['id' => 'After_Payment_Complete',                 'name' => $this->l('After order is paid in full')],
-                                                                ['id' => 'After_Payment_Complete_Inc_Banktrans',   'name' => $this->l('After order is paid in full or by banktransfer')],
-                                                ],
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => [
+                            [
+                                'id' => 'After_Confirmation',
+                                'name' => $this->l('After order is confirmed')
+                            ],
+                            [
+                                'id' => 'After_Payment_Complete',
+                                'name' => $this->l('After order is paid in full')
+                            ],
+                            [
+                                'id' => 'After_Payment_Complete_Inc_Banktrans',
+                                'name' => $this->l('After order is paid in full or by banktransfer')
+                            ],
+                        ],
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
             ],
         ];
-
         $fields_form[2]['form'] = [
             'legend' => [
                 'title' => $this->l('Status Settings'),
@@ -341,10 +358,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_NEW_ORDER',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -352,10 +369,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_INITIALIZED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -363,10 +380,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_COMPLETED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -374,10 +391,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_UNCLEARED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -385,10 +402,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_VOID',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -396,10 +413,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_CANCELLED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -407,10 +424,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_EXPIRED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -418,10 +435,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_DECLINED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -429,10 +446,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_REFUNDED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                            ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -440,10 +457,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_PARTIAL_REFUNDED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
                 [
                     'type' => 'select',
@@ -451,10 +468,10 @@ class MultiSafepay extends PaymentModule
                     'name' => 'MULTISAFEPAY_OS_SHIPPED',
                     'required' => false,
                     'options' => [
-                                            'query' => $order_states,
-                                            'id' => 'id',
-                                            'name' => 'name',
-                                        ],
+                        'query' => $order_states,
+                        'id' => 'id',
+                        'name' => 'name',
+                    ],
                 ],
             ],
             'submit' => [
@@ -674,18 +691,20 @@ class MultiSafepay extends PaymentModule
         if (!$this->isShippingStatus($params['newOrderStatus']->id)) {
             return;
         }
+
         $order = new Order((int) $params['id_order']);
+
         if (!$this->isMultiSafepayOrder($order)) {
             return;
         }
 
-        $carrier = new Carrier((int) $params['cart']->id_carrier);
         $shipData = [
             'tracktrace_code' => $order->getWsShippingNumber(),
-            'carrier' => $carrier->name,
+            'carrier' => (new Carrier((int)$order->id_carrier))->name,
             'ship_date' => date('Y-m-d H:i:s'),
-            'reason' => 'Shipped',
+            'status' => 'shipped',
         ];
+
         $endpoint = 'orders/' . $params['id_order'];
 
         $multisafepay = new MultiSafepayClient();

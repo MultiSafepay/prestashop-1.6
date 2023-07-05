@@ -255,7 +255,7 @@ class MultisafepayNotificationModuleFrontController extends ModuleFrontControlle
         $msg = 'MultiSafepay reference: ' . $this->order_id;
         $createOrder = $this->module->validateOrder((int) $this->cart_id, $this->statussen[$this->status], $this->paid, $paymentMethodName, $msg, [], null, false, $this->secure_key);
 
-        if($createOrder) {
+        if ($createOrder) {
             $this->updateOrder();
         }
     }
