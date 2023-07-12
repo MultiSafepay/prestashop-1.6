@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.10.5
+Release date: Jul 12th, 2023
+
+### Fixed
++ PLGPRSS-492: Fix an issue when the transaction needs to be set as shipped but the carrier name can't be found
+
+***
+
 ## 3.10.4
 Release date: Jun 26th, 2023
 

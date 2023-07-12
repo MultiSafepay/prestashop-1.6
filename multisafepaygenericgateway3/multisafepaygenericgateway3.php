@@ -28,7 +28,7 @@ class MultiSafepayGenericGateway3 extends PaymentModule
         }
         $this->name = 'multisafepaygenericgateway3';
         $this->tab = 'payments_gateways';
-        $this->version = '3.10.4';
+        $this->version = '3.10.5';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;
