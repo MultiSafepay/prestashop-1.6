@@ -126,28 +126,30 @@ class MultisafepayNotificationModuleFrontController extends ModuleFrontControlle
                 $msp->setApiKey($api);
                 $msp->setApiUrl($mode);
 
-                try {
-                    $this->transactie = $msp->orders->get($transactionid, 'orders', [], false);
-                } catch (Exception $e) {
-                    $msg = sprintf('%s %s', htmlspecialchars($e->getMessage()), $transactionid);
-                    PrestaShopLogger::addLog($msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
-                }
+                if($transactionid) {
+                    try {
+                        $this->transactie = $msp->orders->get($transactionid, 'orders', [], false);
+                    } catch (Exception $e) {
+                        $msg = sprintf('%s %s', htmlspecialchars($e->getMessage()), $transactionid);
+                        PrestaShopLogger::addLog($msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
+                    }
 
-                // Test if transaction exist
-                if ($this->transactie->order_id) {
-                    $var1 = Tools::jsonDecode($this->transactie->var1);
-                    $cart_id = $var1->id_cart;
+                    // Test if transaction exist
+                    if ($this->transactie->order_id) {
+                        $var1 = Tools::jsonDecode($this->transactie->var1);
+                        $cart_id = $var1->id_cart;
 
-                    $lastCart = new Cart($cart_id);
-                    $newCart = $lastCart->duplicate();
+                        $lastCart = new Cart($cart_id);
+                        $newCart = $lastCart->duplicate();
 
-                    if (!$newCart || !Validate::isLoadedObject($newCart['cart'])) {
-                        $errors[] = Tools::displayError('Sorry. We cannot renew your order.');
-                    } elseif (!$newCart['success']) {
-                        $errors[] = Tools::displayError('Some items are no longer available, and we are unable to renew your order.');
-                    } else {
-                        $this->context->cookie->id_cart = $newCart['cart']->id;
-                        $this->context->cookie->write();
+                        if (!$newCart || !Validate::isLoadedObject($newCart['cart'])) {
+                            $errors[] = Tools::displayError('Sorry. We cannot renew your order.');
+                        } elseif (!$newCart['success']) {
+                            $errors[] = Tools::displayError('Some items are no longer available, and we are unable to renew your order.');
+                        } else {
+                            $this->context->cookie->id_cart = $newCart['cart']->id;
+                            $this->context->cookie->write();
+                        }
                     }
                 } else {
                     $cart_id = Tools::getValue('id_cancel_cart');
