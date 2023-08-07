@@ -334,7 +334,7 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
         $this->shopping_cart = [];
         $this->checkout_options = [];
         $this->checkout_options['tax_tables']['default'] = ['shipping_taxed' => 'true', 'rate' => '0.21'];
-        $this->checkout_options['tax_tables']['alternate'][] = '';
+        $this->checkout_options['tax_tables']['alternate'] = [];
 
         $items = "<ul>\n";
 
