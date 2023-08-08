@@ -81,6 +81,7 @@ class Multisafepaybeautyandwellness extends PaymentModule
             'gateway' => $this->gateway,
             'name' => $this->displayName,
             'direct' => false,
+            'useTokenization' => false,
         ]);
 
         return $this->display(__FILE__, 'payment.tpl');

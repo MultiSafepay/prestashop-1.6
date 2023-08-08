@@ -102,6 +102,7 @@ class MultiSafepayAlipay extends PaymentModule
             'name' => $this->displayName,
             'fee' => $this->fee,
             'direct' => false,
+            'useTokenization' => false,
         ]);
 
         return $this->display(__FILE__, 'payment.tpl');

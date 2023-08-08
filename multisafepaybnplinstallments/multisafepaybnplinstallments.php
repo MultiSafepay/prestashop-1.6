@@ -86,10 +86,6 @@ class MultisafepayBNPLInstallments extends PaymentModule
             return;
         }
 
-        if (!in_array($_SERVER['REMOTE_ADDR'], $address) && $ip_filter == true) {
-            return false;
-        }
-
         $min_amount = (int) Configuration::get('MULTISAFEPAY_BNPL_INSTM_MIN_AMOUNT');
         $max_amount = (int) Configuration::get('MULTISAFEPAY_BNPL_INSTM_MAX_AMOUNT');
 

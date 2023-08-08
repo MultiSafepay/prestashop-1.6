@@ -100,6 +100,8 @@ class MultiSafepayGenericGateway2 extends PaymentModule
             'gateway' => $gateway_code,
             'name' => $gateway_title,
             'fee' => $this->fee,
+            'direct' => false,
+            'useTokenization' => false,
         ]);
 
         return $this->display(__FILE__, 'payment.tpl');

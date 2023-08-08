@@ -101,6 +101,7 @@ class MultisafepayDirdeb extends PaymentModule
             'name' => $this->displayName,
             'fee' => $this->fee,
             'direct' => $direct,
+            'useTokenization' => false,
             'fields' => [
                 [
                     'type' => 'text',

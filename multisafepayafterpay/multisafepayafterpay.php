@@ -118,6 +118,7 @@ class MultisafepayAfterpay extends PaymentModule
                     'name' => 'email',
                     'label' => 'Email',
                     'required' => true,
+                    'placeholder' => '',
                     'value' => $customer->email,
                 ],
                 [

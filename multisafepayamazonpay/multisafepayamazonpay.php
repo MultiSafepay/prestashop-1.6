@@ -106,6 +106,7 @@ class MultiSafepayAmazonPay extends PaymentModule
             'moduleLink' => $this->name,
             'gateway' => $this->gateway,
             'name' => $this->displayName,
+            'useTokenization' => false,
             'fee' => $this->fee,
             'direct' => false,
         ]);

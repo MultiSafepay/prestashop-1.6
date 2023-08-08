@@ -98,11 +98,13 @@ class MultisafepayZinia extends PaymentModule
             'name' => $this->displayName,
             'fee' => $this->fee,
             'direct' => true,
+            'useTokenization' => false,
             'fields' => [
                 [
                     'type' => 'email',
                     'name' => 'email',
                     'label' => 'Email',
+                    'placeholder' => '',
                     'required' => true,
                     'value' => $customer->email,
                 ],
@@ -132,12 +134,8 @@ class MultisafepayZinia extends PaymentModule
                             'value' => 'mr',
                         ],
                         [
-                            'name' => 'Ms',
-                            'value' => 'ms',
-                        ],
-                        [
-                            'name' => 'Miss',
-                            'value' => 'miss',
+                            'name' => 'Mrs',
+                            'value' => 'mrs',
                         ],
                     ],
                 ],

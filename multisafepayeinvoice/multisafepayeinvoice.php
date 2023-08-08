@@ -42,7 +42,7 @@ class MultisafepayEinvoice extends PaymentModule
         parent::__construct();
 
         $this->gateway = 'EINVOICE';
-        $this->displayName = $this->l('E-Invoice');
+        $this->displayName = $this->l('E-Invoicing');
         $this->description = $this->l('This module allows you to accept payments by MultiSafepay.');
         $this->confirmUninstall = $this->l('Are you sure you want to delete these details?');
 
@@ -103,6 +103,9 @@ class MultisafepayEinvoice extends PaymentModule
             return false;
         }
 
+        $addressDelivery = new Address($this->context->cart->id_address_delivery);
+        $customer = new Customer($this->context->cart->id_customer);
+
         $this->context->smarty->clearAssign(MultiSafepay::SMARTY_VARIABLES_TO_UNASSIGN);
 
         $this->context->smarty->assign([
@@ -113,12 +116,15 @@ class MultisafepayEinvoice extends PaymentModule
             'name' => $this->displayName,
             'fee' => $this->fee,
             'direct' => true,
+            'useTokenization' => false,
             'fields' => [
                 [
                     'type' => 'date',
                     'name' => 'birthday',
                     'label' => 'Date of birth',
+                    'placeholder' => '',
                     'required' => true,
+                    'value' => $customer->birthday,
                 ],
                 [
                     'type' => 'tel',
@@ -126,6 +132,7 @@ class MultisafepayEinvoice extends PaymentModule
                     'label' => 'Phonenumber',
                     'required' => true,
                     'placeholder' => '0612345678',
+                    'value' => $addressDelivery->phone ?: $addressDelivery->phone_mobile,
                 ],
                 [
                     'type' => 'text',
@@ -133,6 +140,7 @@ class MultisafepayEinvoice extends PaymentModule
                     'label' => 'Bank Account',
                     'required' => true,
                     'placeholder' => 'NL87ABNA0000000001',
+                    'value' => '',
                 ],
             ],
         ]);

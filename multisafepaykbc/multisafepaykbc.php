@@ -93,6 +93,8 @@ class MultisafepayKbc extends PaymentModule
             'moduleLink' => $this->name,
             'gateway' => $this->gateway,
             'name' => $this->displayName,
+            'useTokenization' => false,
+            'direct' => false,
             'fee' => $this->fee,
         ]);
 

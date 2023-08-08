@@ -115,6 +115,7 @@ class MultisafepayBno extends PaymentModule
             'name' => $this->displayName,
             'fee' => $this->fee,
             'direct' => false,
+            'useTokenization' => false,
         ]);
 
         return $this->display(__FILE__, 'payment.tpl');
@@ -252,6 +253,6 @@ class MultisafepayBno extends PaymentModule
         $helper->fields_value['MULTISAFEPAY_BNO_MAX_AMOUNT'] = Configuration::get('MULTISAFEPAY_BNO_MAX_AMOUNT');
         $helper->fields_value['MULTISAFEPAY_BNO_DIRECT'] = Configuration::get('MULTISAFEPAY_BNO_DIRECT');
 
-        return $output . $helper->generateForm($fields_form);
+        return $helper->generateForm($fields_form);
     }
 }

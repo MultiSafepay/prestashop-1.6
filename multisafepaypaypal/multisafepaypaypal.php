@@ -93,6 +93,8 @@ class MultisafepayPayPal extends PaymentModule
             'gateway' => $this->gateway,
             'name' => $this->displayName,
             'fee' => $this->fee,
+            'useTokenization' => false,
+            'direct' => false,
         ]);
 
         return $this->display(__FILE__, 'payment.tpl');

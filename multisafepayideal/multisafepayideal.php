@@ -112,6 +112,7 @@ class MultiSafepayIdeal extends PaymentModule
             'name' => $this->displayName,
             'fee' => $this->fee,
             'direct' => true,
+            'useTokenization' => false,
             'fields' => [
                 [
                     'type' => 'issuers',
