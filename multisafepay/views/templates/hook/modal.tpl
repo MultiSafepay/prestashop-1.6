@@ -28,6 +28,7 @@
                 <input type="hidden" name="direct" value="{$direct|escape:'htmlall':'UTF-8'}">
                 <input type="hidden" name="gateway" value="{$gateway|escape:'htmlall':'UTF-8'}"/>
                 <input type="hidden" name="payload" value=""/>
+                <input type="hidden" name="tokenize" value="0"/>
                 <div class="multisafepay-modal-content">
                     <div class="multisafepay-modal-header">
                         <div class="icon-title">

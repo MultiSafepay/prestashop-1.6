@@ -23,7 +23,8 @@ function initializePaymentComponent(config) {
         {
         env: config.env,
         apiToken: config.apiToken,
-        order: config.orderData
+        order: config.orderData,
+        recurring: config.recurring,
         }
     )
 
@@ -76,6 +77,9 @@ async function submitPaymentComponent(moduleLink, gateway) {
 
     const payloadInput = document.querySelector("#multisafepay-form-" + gateway + " input[name='payload']")
     payloadInput.setAttribute("value", paymentData.payload)
+
+    const tokenizeInput = document.querySelector("#multisafepay-form-" + gateway + " input[name='tokenize']")
+    tokenizeInput.setAttribute("value", (paymentData.tokenize ?? 0))
 
     const modalForm = document.getElementById('multisafepay-form-' + gateway)
     modalForm.submit()

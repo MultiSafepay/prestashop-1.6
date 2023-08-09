@@ -257,8 +257,9 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
 
         $token = Tools::getValue('token');
         $saveDetails = (bool) Tools::getValue('save_details');
+        $tokenize = (bool) Tools::getValue('tokenize', false);
 
-        if ($saveDetails || $token) {
+        if ($saveDetails || $token || $tokenize) {
             $my_order = $this->createInitialTokenizedOrder($my_order);
 
             if ($token) {

@@ -627,16 +627,16 @@ class MultiSafepay extends PaymentModule
                 'customer' => [
                     'locale' => $this->getLanguageCode(Language::getIsoById($this->context->cart->id_lang)),
                     'country' => (new Country((new Address((int) $this->context->cart->id_address_invoice))->id_country))->iso_code,
-                    'reference' => $useTokenization ? $this->context->cart->id_customer : null,
                 ],
                 'template' => [
                     'settings' => [
                         'embed_mode' => true,
                     ],
                 ],
-                'recurring' => [
-                    'model' => $useTokenization ? 'cardOnFile' : null,
-                ],
+            ],
+            'recurring' => [
+                'tokens' => $this->getTokens($params['gateway'], $this->context->cart->id_customer),
+                'model' => $useTokenization ? 'cardOnFile' : null,
             ],
         ];
 
@@ -647,6 +647,29 @@ class MultiSafepay extends PaymentModule
         );
 
         return $this->display(__FILE__, 'payment-component.tpl');
+    }
+
+    /**
+     * Return tokens as an array
+     *
+     * @param $gateway
+     * @param $customerReference
+     * @return array
+     */
+    private function getTokens($gateway, $customerReference)
+    {
+        $msp = new MultiSafepayClient();
+        $msp->setApiKey(Configuration::get('MULTISAFEPAY_API_KEY'));
+        $msp->setApiUrl(Configuration::get('MULTISAFEPAY_SANDBOX'));
+
+        try {
+            return $msp->tokens->get_by_gateway($gateway, $customerReference);
+        } catch (Exception $e) {
+            $msg = $this->l('Error:') . htmlspecialchars($e->getMessage());
+            PrestaShopLogger::addLog('Tokens: ' . $msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
+
+            return [];
+        }
     }
 
     /**
