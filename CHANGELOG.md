@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.11.0
+Release date: Aug 9th, 2023
+
+### Added
++ DAVAMS-656: Add Zinia Payment Option
+
+### Fixed
++ PLGPRSS-495: Fix warnings related with undefined variables
++ PLGPRSS-494: Prevent log an exception when a cancel action triggers the notification controller and this one does not contain the transaction_id
+
+### Changed
++ DAVAMS-645: Refactor and general improvements over the payment component
+
+***
+
 ## 3.10.5
 Release date: Jul 12th, 2023
 
