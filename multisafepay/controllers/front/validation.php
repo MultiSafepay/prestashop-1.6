@@ -272,7 +272,7 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
             $url = $msp->orders->getPaymentLink();
             Tools::redirect($url);
         } catch (Exception $e) {
-            $msp_error = $e->getMessage();
+            $msp_error = 'There was a problem processing your payment. Please try again later or contact with us.';
 
             if ($gateway == 'PAYAFTER') {
                 switch ($msp_error) {
@@ -291,7 +291,7 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
                 }
             }
 
-            $msg = $this->module->l('Error:') . htmlspecialchars($e->getMessage());
+            $msg = $this->module->l('Error:') . htmlspecialchars(strip_tags($e->getMessage()));
             PrestaShopLogger::addLog($msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
 
             $Debug = new Debug(print_r($my_order, true));

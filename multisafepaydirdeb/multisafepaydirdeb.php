@@ -85,6 +85,10 @@ class MultisafepayDirdeb extends PaymentModule
 
         $direct = Configuration::get('MULTISAFEPAY_DIRDEB_DIRECT');
 
+        if ($this->context->api_access === '0') {
+            $direct = false;
+        }
+
         $total = $this->context->cart->getOrderTotal(true, Cart::BOTH);
 
         if (($max_amount > 0 && $total > $max_amount) || ($min_amount >= 0 && $total < $min_amount) && ($min_amount != $max_amount)) {

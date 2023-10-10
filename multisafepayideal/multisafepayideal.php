@@ -97,9 +97,14 @@ class MultiSafepayIdeal extends PaymentModule
         try {
             $issuers = $msp->issuers->get();
         } catch (Exception $e) {
+            $issuers = [];
             $msg = $this->l('Error:') . htmlspecialchars($e->getMessage());
-            echo $msg;
             PrestaShopLogger::addLog($msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
+        }
+
+        $direct = true;
+        if ($this->context->api_access === '0') {
+            $direct = false;
         }
 
         $this->context->smarty->clearAssign(MultiSafepay::SMARTY_VARIABLES_TO_UNASSIGN);
@@ -111,7 +116,7 @@ class MultiSafepayIdeal extends PaymentModule
             'gateway' => $this->gateway,
             'name' => $this->displayName,
             'fee' => $this->fee,
-            'direct' => true,
+            'direct' => $direct,
             'useTokenization' => false,
             'fields' => [
                 [

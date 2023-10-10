@@ -93,6 +93,11 @@ class MultisafepayAfterpay extends PaymentModule
         $min_amount = (int) Configuration::get('MULTISAFEPAY_AFTERPAY_MIN_AMOUNT');
         $max_amount = (int) Configuration::get('MULTISAFEPAY_AFTERPAY_MAX_AMOUNT');
 
+        $direct = true;
+        if ($this->context->api_access === '0') {
+            $direct = false;
+        }
+
         $total = $this->context->cart->getOrderTotal(true, Cart::BOTH);
 
         if (($max_amount > 0 && $total > $max_amount) || ($min_amount >= 0 && $total < $min_amount) && ($min_amount != $max_amount)) {
@@ -111,7 +116,8 @@ class MultisafepayAfterpay extends PaymentModule
             'gateway' => $this->gateway,
             'name' => $this->displayName,
             'fee' => $this->fee,
-            'direct' => true,
+            'direct' => $direct,
+            'useTokenization' => false,
             'fields' => [
                 [
                     'type' => 'email',

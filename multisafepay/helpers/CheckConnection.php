@@ -4,7 +4,7 @@
  *
  * Do not edit or add to this file if you wish to upgrade the MultiSafepay plugin
  * to newer versions in the future. If you wish to customize the plugin for your
- * needs please document your changes and make backups before you update.
+ * needs, please document your changes and make backups before you update.
  *
  * @author      MultiSafepay <integration@multisafepay.com>
  * @copyright   Copyright (c) MultiSafepay, Inc. (https://www.multisafepay.com)
@@ -19,29 +19,20 @@
  */
 class CheckConnection
 {
+    private $msp_error;
+
     public function __construct($api, $test_mode)
     {
-        if ($api == '') {
-            return;
-        }
-        // Test with current mode
-        $msg = $this->testConnection($api, $test_mode);
-        if ($msg == null) {
-            return;
-        }
-
-        // Test with oposite mode
-        $msg = $this->testConnection($api, !$test_mode);
-        if ($msg == null) {
-            return $test_mode ? 'This API-Key belongs to a LIVE-account' : 'This API-Key belongs to a TEST-account';
-        }
-
-        return 'Unknown error. Probably the API-Key is not correct. Error-code: ' . $msg;
+        $this->msp_error = 'There was a problem with your API key. Please check it and try again.';
+        $this->checkConnection($api, $test_mode);
     }
 
     public function checkConnection($api, $test_mode)
     {
-        return self::__construct($api, $test_mode);
+        if (empty($api)) {
+            return $this->msp_error;
+        }
+        return $this->testConnection($api, $test_mode);
     }
 
     private function testConnection($api, $test_mode)
@@ -58,15 +49,17 @@ class CheckConnection
         $msp->setApiKey($api);
         $msp->setApiUrl($test_mode);
 
-        $msg = null;
-
+        $msg = false;
         try {
             $msp->orders->post($test_order);
-            $url = $msp->orders->getPaymentLink();
+            $msp->orders->getPaymentLink();
         } catch (Exception $e) {
-            $msg = $e->getMessage();
+            $msg = $this->msp_error;
+            $check = strip_tags($e->getMessage());
+            if (strpos($check, '1032') !== false) {
+                $msg = 'API key is not valid. Please check it and try again.';
+            }
         }
-
         return $msg;
     }
 }

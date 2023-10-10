@@ -102,6 +102,10 @@ class Multisafepayin3 extends PaymentModule
         $maxAmount = (int) Configuration::get('MULTISAFEPAY_IN3_MAX_AMOUNT');
         $direct = Configuration::get('MULTISAFEPAY_IN3_DIRECT');
 
+        if ($this->context->api_access === '0') {
+            $direct = false;
+        }
+
         $total = $this->context->cart->getOrderTotal(true, Cart::BOTH);
         if (($total < $minAmount || $total > $maxAmount) && ($minAmount != $maxAmount)) {
             return false;

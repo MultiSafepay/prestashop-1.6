@@ -521,8 +521,25 @@ class MultiSafepay extends PaymentModule
     {
         $this->errors = unserialize($this->context->cookie->msp_error);
 
-        // clear error cookie;
+        // By default, API access is assumed as accessible
+        // and added as string 1 to the cookie
+        $this->context->api_access = '1';
+
+        // Connect to servers to check API access
+        $checkConnection = new CheckConnection('', '');
+        $check = $checkConnection->checkConnection(
+            Configuration::get('MULTISAFEPAY_API_KEY'),
+            Configuration::get('MULTISAFEPAY_SANDBOX')
+        );
+        // Otherwise 0 is added to the same cookie
+        if ($check) {
+            $this->context->api_access = '0';
+        }
+
+        // Clear the error cookie
         $this->context->cookie->msp_error = null;
+
+        // Write all the cookies to the browser
         $this->context->cookie->write();
 
         if (!$this->active || !$this->errors) {
@@ -603,8 +620,14 @@ class MultiSafepay extends PaymentModule
         $msp = new MultiSafepayClient();
         $msp->setApiKey(Configuration::get('MULTISAFEPAY_API_KEY'));
         $msp->setApiUrl(Configuration::get('MULTISAFEPAY_SANDBOX'));
+        try {
+            return $msp->apiToken->get();
+        } catch (Exception $e) {
+            $msg = $this->l('Error:') . htmlspecialchars($e->getMessage());
+            PrestaShopLogger::addLog('ApiToken: ' . $msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
 
-        return $msp->apiToken->get();
+            return '';
+        }
     }
 
     public function hookMspPaymentComponent($params)

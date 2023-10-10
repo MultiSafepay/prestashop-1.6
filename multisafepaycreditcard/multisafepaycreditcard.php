@@ -99,8 +99,8 @@ class MultiSafepayCreditcard extends PaymentModule
         try {
             $gateways = $msp->gateways->get();
         } catch (Exception $e) {
+            $gateways = [];
             $msg = $this->l('Error:') . htmlspecialchars($e->getMessage());
-            echo $msg;
             PrestaShopLogger::addLog($msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
         }
 
@@ -114,6 +114,10 @@ class MultiSafepayCreditcard extends PaymentModule
         }
 
         $useComponent = Configuration::get('MULTISAFEPAY_CREDITCARD_USE_COMPONENT');
+
+        if ($this->context->api_access === '0') {
+            $useComponent = $useTokenization = false;
+        }
 
         $this->context->smarty->assign([
             'this_path_ssl' => Tools::getShopDomainSsl(true, true) . __PS_BASE_URI__ . 'modules/' . $this->name . '/',

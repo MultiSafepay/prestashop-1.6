@@ -49,8 +49,16 @@ class ObjectOrders extends ObjectCore
         return $this->data;
     }
 
+    /**
+     * @throws Exception
+     */
     public function getPaymentLink()
     {
-        return $this->data->payment_url;
+        $url = $this->data->payment_url;
+        if (empty($url)) {
+            throw new Exception('Payment URL is empty');
+        }
+
+        return $url;
     }
 }

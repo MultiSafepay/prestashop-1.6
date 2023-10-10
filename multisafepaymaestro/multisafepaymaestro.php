@@ -101,6 +101,10 @@ class MultisafepayMaestro extends PaymentModule
 
         $useComponent = Configuration::get('MULTISAFEPAY_MAESTRO_USE_COMPONENT');
 
+        if ($this->context->api_access === '0') {
+            $useComponent = $useTokenization = false;
+        }
+
         $this->context->smarty->assign([
             'this_path_ssl' => Tools::getShopDomainSsl(true, true) . __PS_BASE_URI__ . 'modules/' . $this->name . '/',
             'main_path_ssl' => _PS_ROOT_DIR_,

@@ -42,11 +42,11 @@ class MultisafepayFcoNotificationModuleFrontController extends MultisafepayNotif
         try {
             $transactie = $msp->orders->get($order_id, $type = 'orders', $body = [], $query_string = false);
         } catch (Exception $e) {
-            $msg = sprintf('%s %s', htmlspecialchars($e->getMessage()), $transactionid);
+            $msg = sprintf('%s %s', htmlspecialchars($e->getMessage()), $order_id);
             PrestaShopLogger::addLog($msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
             $Debug = new Debug($msg);
 
-            echo $msg;
+            $transactie = '';
         }
 
         return $transactie;

@@ -94,8 +94,11 @@ class MultisafepayBNPLInstallments extends PaymentModule
             return false;
         }
 
-        $useTokenization = false;
         $useComponent = Configuration::get('MULTISAFEPAY_BNPL_INSTM_USE_COMPONENT');
+
+        if ($this->context->api_access === '0') {
+            $useComponent = false;
+        }
 
         $this->context->smarty->assign([
             'this_path_ssl' => Tools::getShopDomainSsl(true, true) . __PS_BASE_URI__ . 'modules/' . $this->name . '/',
@@ -106,7 +109,7 @@ class MultisafepayBNPLInstallments extends PaymentModule
             'fee' => $this->fee,
             'isComponent' => $useComponent,
             'direct' => $useComponent,
-            'useTokenization' => $useTokenization,
+            'useTokenization' => false,
             'multisafepay_tokens' => [],
         ]);
 
