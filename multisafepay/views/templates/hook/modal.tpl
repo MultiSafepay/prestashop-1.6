@@ -43,7 +43,7 @@
                         </p>
                         {if isset($isComponent) && $isComponent}
                             {hook h='MspPaymentComponent' mod='multisafepay' gateway=$gateway useTokenization=$useTokenization}
-                            <input type="text" name="component" value="true" hidden>
+                            <input type="hidden" name="component" value="true">
                         {elseif isset($useTokenization) && $useTokenization}
                             <div class="multisafepay-token-container">
                                 <div class="multisafepay-tokens">
@@ -125,7 +125,7 @@
                                         </label>
                                     {/if}
                                     {if $field.type === 'hidden'}
-                                        <input type="text" hidden name="{$field.name|escape:'htmlall':'UTF-8'}" value="{$field.value|escape:'htmlall':'UTF-8'}"/>
+                                        <input type="hidden" name="{$field.name|escape:'htmlall':'UTF-8'}" value="{$field.value|escape:'htmlall':'UTF-8'}"/>
                                     {/if}
                                 {/foreach}
                             </div>
