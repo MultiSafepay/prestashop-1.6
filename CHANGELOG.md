@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.12.0
+Release date: Oct 11th, 2023
+
+### Added
++ PLGPRSS-498: New option to control the inclusion of shopping cart data in order requests
+
+### Fixed
++ PLGPRSS-497: Fix the input field being displayed when it should be hidden
++ DAVAMS-667: Refactor module for better error handling
+
+***
+
 ## 3.11.0
 Release date: Aug 9th, 2023
 
