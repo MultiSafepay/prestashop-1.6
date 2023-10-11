@@ -41,7 +41,9 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
             Tools::redirectLink(__PS_BASE_URI__ . 'order.php?step=1');
         }
 
-        $this->getCart();
+        if (!Configuration::get('MULTISAFEPAY_DISABLE_SHOPPING_CART')) {
+            $this->getCart();
+        }
 
         if (!isset($this->shopping_cart)) {
             $this->shopping_cart = [];
@@ -248,6 +250,10 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
                   'custom_2' => '',
               ],
         ];
+
+        if (Configuration::get('MULTISAFEPAY_DISABLE_SHOPPING_CART')) {
+            unset($my_order['shopping_cart'], $my_order['checkout_options']);
+        }
 
         if ($paymentComponentData) {
             $my_order['payment_data'] = [];

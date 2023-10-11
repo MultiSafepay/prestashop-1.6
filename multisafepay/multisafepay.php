@@ -73,6 +73,7 @@ class MultiSafepay extends PaymentModule
         Configuration::updateValue('MULTISAFEPAY_TIME_LABEL', 'days');
         Configuration::updateValue('MULTISAFEPAY_DEBUG_MODE', false);
         Configuration::updateValue('MULTISAFEPAY_WHEN_CREATE_ORDER', 'After_Confirmation');
+        Configuration::updateValue('MULTISAFEPAY_DISABLE_SHOPPING_CART', false);
 
         $multisafepay_stats = [
             'new_order' => ['new_order', false, '#4169e1', false, '', false, false],
@@ -120,6 +121,7 @@ class MultiSafepay extends PaymentModule
         Configuration::deleteByName('MULTISAFEPAY_API_KEY');
 
         Configuration::deleteByName('MULTISAFEPAY_WHEN_CREATE_ORDER');
+        Configuration::deleteByName('MULTISAFEPAY_DISABLE_SHOPPING_CART');
 
         Configuration::deleteByName('MULTISAFEPAY_DEBUG_MODE');
         Configuration::deleteByName('MULTISAFEPAY_TIME_ACTIVE');
@@ -146,6 +148,7 @@ class MultiSafepay extends PaymentModule
             Configuration::updateValue('MULTISAFEPAY_API_KEY', Tools::getValue('MULTISAFEPAY_API_KEY'));
             Configuration::updateValue('MULTISAFEPAY_SANDBOX', Tools::getValue('MULTISAFEPAY_SANDBOX'));
             Configuration::updateValue('MULTISAFEPAY_WHEN_CREATE_ORDER', Tools::getValue('MULTISAFEPAY_WHEN_CREATE_ORDER'));
+            Configuration::updateValue('MULTISAFEPAY_DISABLE_SHOPPING_CART', Tools::getValue('MULTISAFEPAY_DISABLE_SHOPPING_CART'));
             Configuration::updateValue('MULTISAFEPAY_TIME_ACTIVE', Tools::getValue('MULTISAFEPAY_TIME_ACTIVE'));
             Configuration::updateValue('MULTISAFEPAY_TIME_LABEL', Tools::getValue('MULTISAFEPAY_TIME_LABEL'));
             Configuration::updateValue('MULTISAFEPAY_SECONDS_ACTIVE', Tools::getValue('MULTISAFEPAY_SECONDS_ACTIVE'));
@@ -344,6 +347,27 @@ class MultiSafepay extends PaymentModule
                         'name' => 'name',
                     ],
                 ],
+                [
+                    'type' => 'switch',
+                    'label' => $this->l('Disable Shopping Cart'),
+                    'name' => 'MULTISAFEPAY_DISABLE_SHOPPING_CART',
+                    'class' => 't',
+                    'required' => false,
+                    'is_bool' => true,
+                    'hint' => $this->l('Enable this option to hide the cart items on the MultiSafepay payment page, leaving only the total order amount. Note: If is enabled, the payment methods which require shopping cart will not work: Riverty, E-Invoicing, in3, Klarna and Pay After Delivery.'),
+                    'values' => [
+                        [
+                            'id' => 'true',
+                            'value' => true,
+                            'label' => $this->l('Yes'),
+                        ],
+                        [
+                            'id' => 'false',
+                            'value' => false,
+                            'label' => $this->l('No'),
+                        ],
+                    ],
+                ],
             ],
         ];
         $fields_form[2]['form'] = [
@@ -483,6 +507,7 @@ class MultiSafepay extends PaymentModule
         $helper->fields_value['MULTISAFEPAY_API_KEY'] = Configuration::get('MULTISAFEPAY_API_KEY');
         $helper->fields_value['MULTISAFEPAY_SANDBOX'] = Configuration::get('MULTISAFEPAY_SANDBOX');
         $helper->fields_value['MULTISAFEPAY_WHEN_CREATE_ORDER'] = Configuration::get('MULTISAFEPAY_WHEN_CREATE_ORDER');
+        $helper->fields_value['MULTISAFEPAY_DISABLE_SHOPPING_CART'] = Configuration::get('MULTISAFEPAY_DISABLE_SHOPPING_CART');
         $helper->fields_value['MULTISAFEPAY_OS_NEW_ORDER'] = Configuration::get('MULTISAFEPAY_OS_NEW_ORDER');
         $helper->fields_value['MULTISAFEPAY_OS_INITIALIZED'] = Configuration::get('MULTISAFEPAY_OS_INITIALIZED');
         $helper->fields_value['MULTISAFEPAY_OS_COMPLETED'] = Configuration::get('MULTISAFEPAY_OS_COMPLETED');
