@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ***
 
 ## 3.12.0
-Release date: Oct 11th, 2023
+Release date: Oct 13th, 2023
 
 ### Added
 + PLGPRSS-498: New option to control the inclusion of shopping cart data in order requests
