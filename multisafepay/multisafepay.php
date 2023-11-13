@@ -74,6 +74,7 @@ class MultiSafepay extends PaymentModule
         Configuration::updateValue('MULTISAFEPAY_DEBUG_MODE', false);
         Configuration::updateValue('MULTISAFEPAY_WHEN_CREATE_ORDER', 'After_Confirmation');
         Configuration::updateValue('MULTISAFEPAY_DISABLE_SHOPPING_CART', false);
+        Configuration::updateValue('MULTISAFEPAY_TEMPLATE_ID_VALUE', '');
 
         $multisafepay_stats = [
             'new_order' => ['new_order', false, '#4169e1', false, '', false, false],
@@ -122,6 +123,7 @@ class MultiSafepay extends PaymentModule
 
         Configuration::deleteByName('MULTISAFEPAY_WHEN_CREATE_ORDER');
         Configuration::deleteByName('MULTISAFEPAY_DISABLE_SHOPPING_CART');
+        Configuration::deleteByName('MULTISAFEPAY_TEMPLATE_ID_VALUE');
 
         Configuration::deleteByName('MULTISAFEPAY_DEBUG_MODE');
         Configuration::deleteByName('MULTISAFEPAY_TIME_ACTIVE');
@@ -149,6 +151,7 @@ class MultiSafepay extends PaymentModule
             Configuration::updateValue('MULTISAFEPAY_SANDBOX', Tools::getValue('MULTISAFEPAY_SANDBOX'));
             Configuration::updateValue('MULTISAFEPAY_WHEN_CREATE_ORDER', Tools::getValue('MULTISAFEPAY_WHEN_CREATE_ORDER'));
             Configuration::updateValue('MULTISAFEPAY_DISABLE_SHOPPING_CART', Tools::getValue('MULTISAFEPAY_DISABLE_SHOPPING_CART'));
+            Configuration::updateValue('MULTISAFEPAY_TEMPLATE_ID_VALUE', Tools::getValue('MULTISAFEPAY_TEMPLATE_ID_VALUE'));
             Configuration::updateValue('MULTISAFEPAY_TIME_ACTIVE', Tools::getValue('MULTISAFEPAY_TIME_ACTIVE'));
             Configuration::updateValue('MULTISAFEPAY_TIME_LABEL', Tools::getValue('MULTISAFEPAY_TIME_LABEL'));
             Configuration::updateValue('MULTISAFEPAY_SECONDS_ACTIVE', Tools::getValue('MULTISAFEPAY_SECONDS_ACTIVE'));
@@ -368,6 +371,14 @@ class MultiSafepay extends PaymentModule
                         ],
                     ],
                 ],
+                [
+                    'type' => 'text',
+                    'class' => 'fixed-width-lg',
+                    'label' => $this->l('Payment Component Template ID'),
+                    'hint' => $this->l('If empty, the default one will be used.'),
+                    'name' => 'MULTISAFEPAY_TEMPLATE_ID_VALUE',
+                    'required' => false,
+                ],
             ],
         ];
         $fields_form[2]['form'] = [
@@ -508,6 +519,7 @@ class MultiSafepay extends PaymentModule
         $helper->fields_value['MULTISAFEPAY_SANDBOX'] = Configuration::get('MULTISAFEPAY_SANDBOX');
         $helper->fields_value['MULTISAFEPAY_WHEN_CREATE_ORDER'] = Configuration::get('MULTISAFEPAY_WHEN_CREATE_ORDER');
         $helper->fields_value['MULTISAFEPAY_DISABLE_SHOPPING_CART'] = Configuration::get('MULTISAFEPAY_DISABLE_SHOPPING_CART');
+        $helper->fields_value['MULTISAFEPAY_TEMPLATE_ID_VALUE'] = Configuration::get('MULTISAFEPAY_TEMPLATE_ID_VALUE');
         $helper->fields_value['MULTISAFEPAY_OS_NEW_ORDER'] = Configuration::get('MULTISAFEPAY_OS_NEW_ORDER');
         $helper->fields_value['MULTISAFEPAY_OS_INITIALIZED'] = Configuration::get('MULTISAFEPAY_OS_INITIALIZED');
         $helper->fields_value['MULTISAFEPAY_OS_COMPLETED'] = Configuration::get('MULTISAFEPAY_OS_COMPLETED');
@@ -687,6 +699,12 @@ class MultiSafepay extends PaymentModule
                 'model' => $useTokenization ? 'cardOnFile' : null,
             ],
         ];
+
+        // Payment Component Template ID.
+        $templateId = Configuration::get('MULTISAFEPAY_TEMPLATE_ID_VALUE') ? Configuration::get('MULTISAFEPAY_TEMPLATE_ID_VALUE') : '';
+        if (!empty($templateId)) {
+            $config['orderData']['payment_options']['template_id'] = $templateId;
+        }
 
         $this->context->smarty->assign(
             [
