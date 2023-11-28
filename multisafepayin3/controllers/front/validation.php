@@ -14,7 +14,7 @@ class MultisafepayIn3ValidationModuleFrontController extends MultisafepayValidat
     {
         $this->type = 'redirect';
 
-        if (Tools::getValue('MULTISAFEPAY_IN3_DIRECT')) {
+        if (Configuration::get('MULTISAFEPAY_IN3_DIRECT')) {
             $this->type = 'direct';
             $this->getGatewayInfo();
         }

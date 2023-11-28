@@ -45,8 +45,8 @@ class Multisafepayin3 extends PaymentModule
         parent::__construct();
 
         $this->gateway = 'IN3';
-        $this->displayName = $this->l('in3');
-        $this->description = $this->l('This module allows you to accept payments by MultiSafepay.');
+        $this->displayName = $this->l('in3: Betaal in 3 delen (0% rente)');
+        $this->description = $this->l('Betaal vandaag 1/3 via iDEAL. De tweede en derde termijn betaal je binnen 30 en 60 dagen. Zonder rente.');
         $this->confirmUninstall = $this->l('Are you sure you want to delete these details?');
 
         if (Module::isInstalled('bvkpaymentfees') && Module::isInstalled('multisafepay')) {
@@ -141,12 +141,6 @@ class Multisafepayin3 extends PaymentModule
                             'value' => 'miss',
                         ],
                     ],
-                ],
-                [
-                    'type' => 'date',
-                    'name' => 'birthday',
-                    'label' => 'Date of birth',
-                    'required' => true,
                 ],
             ],
         ]);
