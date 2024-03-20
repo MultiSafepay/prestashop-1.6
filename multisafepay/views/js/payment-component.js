@@ -24,7 +24,6 @@ function initializePaymentComponent(config) {
             env: config.env,
             apiToken: config.apiToken,
             order: config.orderData,
-            payment_options: config.paymentOptions,
             recurring: config.recurring,
         }
     )
