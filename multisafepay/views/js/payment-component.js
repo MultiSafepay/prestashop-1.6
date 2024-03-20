@@ -21,10 +21,11 @@ let paymentComponents = []
 function initializePaymentComponent(config) {
     const PaymentComponent = new MultiSafepay(
         {
-        env: config.env,
-        apiToken: config.apiToken,
-        order: config.orderData,
-        recurring: config.recurring,
+            env: config.env,
+            apiToken: config.apiToken,
+            order: config.orderData,
+            payment_options: config.paymentOptions,
+            recurring: config.recurring,
         }
     )
 

@@ -688,10 +688,13 @@ class MultiSafepay extends PaymentModule
                     'locale' => $this->getLanguageCode(Language::getIsoById($this->context->cart->id_lang)),
                     'country' => (new Country((new Address((int) $this->context->cart->id_address_invoice))->id_country))->iso_code,
                 ],
+            ],
+            'payment_options' => [
                 'template' => [
                     'settings' => [
                         'embed_mode' => true,
                     ],
+                    'merge' => true,
                 ],
             ],
             'recurring' => [
