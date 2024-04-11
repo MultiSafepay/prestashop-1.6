@@ -357,7 +357,7 @@ class MultiSafepay extends PaymentModule
                     'class' => 't',
                     'required' => false,
                     'is_bool' => true,
-                    'hint' => $this->l('Enable this option to hide the cart items on the MultiSafepay payment page, leaving only the total order amount. Note: If is enabled, the payment methods which require shopping cart will not work: Riverty, E-Invoicing, in3, Klarna and Pay After Delivery.'),
+                    'hint' => $this->l('Enable this option to hide the cart items on the MultiSafepay payment page, leaving only the total order amount. Note: If is enabled, the payment methods which require shopping cart will not work: Riverty, E-Invoicing, iDEAL+in3, Klarna and Pay After Delivery.'),
                     'values' => [
                         [
                             'id' => 'true',

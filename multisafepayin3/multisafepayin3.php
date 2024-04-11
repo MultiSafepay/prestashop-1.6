@@ -22,7 +22,7 @@ require_once _PS_MODULE_DIR_ . 'multisafepay/helpers/Autoloader.php';
 class Multisafepayin3 extends PaymentModule
 {
     /**
-     * Multisafepayin3 constructor.
+     * Multisafepay iDEAL+in3 constructor.
      */
     public function __construct()
     {
@@ -45,7 +45,7 @@ class Multisafepayin3 extends PaymentModule
         parent::__construct();
 
         $this->gateway = 'IN3';
-        $this->displayName = $this->l('in3: Betaal in 3 delen (0% rente)');
+        $this->displayName = $this->l('iDEAL+in3: Betaal in 3 delen (0% rente)');
         $this->description = $this->l('Betaal vandaag 1/3 via iDEAL. De tweede en derde termijn betaal je binnen 30 en 60 dagen. Zonder rente.');
         $this->confirmUninstall = $this->l('Are you sure you want to delete these details?');
 
@@ -209,7 +209,7 @@ class Multisafepayin3 extends PaymentModule
                     'type' => 'text',
                     'class' => 'fixed-width-sm',
                     'prefix' => $this->context->currency->sign,
-                    'label' => $this->l('Minimal order amount for in3'),
+                    'label' => $this->l('Minimal order amount for iDEAL+in3'),
                     'name' => 'MULTISAFEPAY_IN3_MIN_AMOUNT',
                     'required' => false,
                 ],
@@ -217,7 +217,7 @@ class Multisafepayin3 extends PaymentModule
                     'type' => 'text',
                     'class' => 'fixed-width-sm',
                     'prefix' => $this->context->currency->sign,
-                    'label' => $this->l('Maximum order amount for in3'),
+                    'label' => $this->l('Maximum order amount for iDEAL+in3'),
                     'name' => 'MULTISAFEPAY_IN3_MAX_AMOUNT',
                     'required' => false,
                 ],
