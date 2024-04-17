@@ -19,17 +19,20 @@ if (!Module::isInstalled('multisafepay')) {
 require_once _PS_MODULE_DIR_ . 'multisafepay/api/Autoloader.php';
 require_once _PS_MODULE_DIR_ . 'multisafepay/helpers/Autoloader.php';
 
-class Multisafepayin3 extends PaymentModule
+class Multisafepayin3b2b extends PaymentModule
 {
+    public $fee;
+    public $gatewayTitle;
+
     /**
-     * Multisafepay iDEAL+in3 constructor.
+     * Multisafepay In3 constructor.
      */
     public function __construct()
     {
         if (!Module::isInstalled('multisafepay')) {
             return;
         }
-        $this->name = 'multisafepayin3';
+        $this->name = 'multisafepayin3b2b';
         $this->tab = 'payments_gateways';
         $this->version = '3.12.0';
         $this->author = 'MultiSafepay';
@@ -44,8 +47,8 @@ class Multisafepayin3 extends PaymentModule
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->gateway = 'IN3';
-        $this->displayName = $this->l('iDEAL+in3: Betaal in 3 delen (0% rente)');
+        $this->gateway = 'IN3B2B';
+        $this->displayName = $this->l('in3: Betaal in 3 delen (0% rente)');
         $this->description = $this->l('Betaal vandaag 1/3 via iDEAL. De tweede en derde termijn betaal je binnen 30 en 60 dagen. Zonder rente.');
         $this->confirmUninstall = $this->l('Are you sure you want to delete these details?');
 
@@ -66,9 +69,9 @@ class Multisafepayin3 extends PaymentModule
             !$this->registerHook('payment')) {
             return false;
         }
-        Configuration::updateValue('MULTISAFEPAY_IN3_MIN_AMOUNT', '100');
-        Configuration::updateValue('MULTISAFEPAY_IN3_MAX_AMOUNT', '3000');
-        Configuration::updateValue('MULTISAFEPAY_IN3_DIRECT', true);
+        Configuration::updateValue('MULTISAFEPAY_IN3B2B_MIN_AMOUNT', '150');
+        Configuration::updateValue('MULTISAFEPAY_IN3B2B_MAX_AMOUNT', '3000');
+        Configuration::updateValue('MULTISAFEPAY_IN3B2B_USE_COMPONENT', true);
 
         return true;
     }
@@ -82,9 +85,9 @@ class Multisafepayin3 extends PaymentModule
             return false;
         }
 
-        Configuration::deleteByName('MULTISAFEPAY_IN3_MIN_AMOUNT');
-        Configuration::deleteByName('MULTISAFEPAY_IN3_MAX_AMOUNT');
-        Configuration::deleteByName('MULTISAFEPAY_IN3_DIRECT');
+        Configuration::deleteByName('MULTISAFEPAY_IN3B2B_MIN_AMOUNT');
+        Configuration::deleteByName('MULTISAFEPAY_IN3B2B_MAX_AMOUNT');
+        Configuration::deleteByName('MULTISAFEPAY_IN3B2B_USE_COMPONENT');
 
         return parent::uninstall();
     }
@@ -98,12 +101,12 @@ class Multisafepayin3 extends PaymentModule
             return;
         }
 
-        $minAmount = (int) Configuration::get('MULTISAFEPAY_IN3_MIN_AMOUNT');
-        $maxAmount = (int) Configuration::get('MULTISAFEPAY_IN3_MAX_AMOUNT');
-        $direct = Configuration::get('MULTISAFEPAY_IN3_DIRECT');
+        $minAmount = (int) Configuration::get('MULTISAFEPAY_IN3B2B_MIN_AMOUNT');
+        $maxAmount = (int) Configuration::get('MULTISAFEPAY_IN3B2B_MAX_AMOUNT');
+        $useComponent = Configuration::get('MULTISAFEPAY_IN3B2B_USE_COMPONENT');
 
         if ($this->context->api_access === '0') {
-            $direct = false;
+            $useComponent = false;
         }
 
         $total = $this->context->cart->getOrderTotal(true, Cart::BOTH);
@@ -120,30 +123,9 @@ class Multisafepayin3 extends PaymentModule
             'gateway' => $this->gateway,
             'name' => $this->displayName,
             'fee' => $this->fee,
-            'direct' => $direct,
+            'isComponent' => $useComponent,
+            'direct' => $useComponent,
             'useTokenization' => false,
-            'fields' => [
-                [
-                    'type' => 'select',
-                    'name' => 'gender',
-                    'label' => $this->l('Salutation'),
-                    'required' => true,
-                    'options' => [
-                        [
-                            'name' => 'Mr',
-                            'value' => 'mr',
-                        ],
-                        [
-                            'name' => 'Ms',
-                            'value' => 'ms',
-                        ],
-                        [
-                            'name' => 'Miss',
-                            'value' => 'miss',
-                        ],
-                    ],
-                ],
-            ],
         ]);
 
         return $this->display(__FILE__, 'payment.tpl');
@@ -161,9 +143,9 @@ class Multisafepayin3 extends PaymentModule
     public function getContent()
     {
         if (Tools::isSubmit('submit' . $this->name)) {
-            Configuration::updateValue('MULTISAFEPAY_IN3_MIN_AMOUNT', Tools::getValue('MULTISAFEPAY_IN3_MIN_AMOUNT'));
-            Configuration::updateValue('MULTISAFEPAY_IN3_MAX_AMOUNT', Tools::getValue('MULTISAFEPAY_IN3_MAX_AMOUNT'));
-            Configuration::updateValue('MULTISAFEPAY_IN3_DIRECT', Tools::getValue('MULTISAFEPAY_IN3_DIRECT'));
+            Configuration::updateValue('MULTISAFEPAY_IN3B2B_MIN_AMOUNT', Tools::getValue('MULTISAFEPAY_IN3B2B_MIN_AMOUNT'));
+            Configuration::updateValue('MULTISAFEPAY_IN3B2B_MAX_AMOUNT', Tools::getValue('MULTISAFEPAY_IN3B2B_MAX_AMOUNT'));
+            Configuration::updateValue('MULTISAFEPAY_IN3B2B_USE_COMPONENT', Tools::getValue('MULTISAFEPAY_IN3B2B_USE_COMPONENT'));
         }
 
         $default_lang = (int) Configuration::get('PS_LANG_DEFAULT');
@@ -195,9 +177,9 @@ class Multisafepayin3 extends PaymentModule
             ],
         ];
 
-        $helper->fields_value['MULTISAFEPAY_IN3_MIN_AMOUNT'] = Configuration::get('MULTISAFEPAY_IN3_MIN_AMOUNT');
-        $helper->fields_value['MULTISAFEPAY_IN3_MAX_AMOUNT'] = Configuration::get('MULTISAFEPAY_IN3_MAX_AMOUNT');
-        $helper->fields_value['MULTISAFEPAY_IN3_DIRECT'] = Configuration::get('MULTISAFEPAY_IN3_DIRECT');
+        $helper->fields_value['MULTISAFEPAY_IN3B2B_MIN_AMOUNT'] = Configuration::get('MULTISAFEPAY_IN3B2B_MIN_AMOUNT');
+        $helper->fields_value['MULTISAFEPAY_IN3B2B_MAX_AMOUNT'] = Configuration::get('MULTISAFEPAY_IN3B2B_MAX_AMOUNT');
+        $helper->fields_value['MULTISAFEPAY_IN3B2B_USE_COMPONENT'] = Configuration::get('MULTISAFEPAY_IN3B2B_USE_COMPONENT');
 
         $fields_form = [];
         $fields_form[0]['form'] = [
@@ -210,22 +192,22 @@ class Multisafepayin3 extends PaymentModule
                     'type' => 'text',
                     'class' => 'fixed-width-sm',
                     'prefix' => $this->context->currency->sign,
-                    'label' => $this->l('Minimal order amount for iDEAL+in3'),
-                    'name' => 'MULTISAFEPAY_IN3_MIN_AMOUNT',
+                    'label' => $this->l('Minimal order amount for in3'),
+                    'name' => 'MULTISAFEPAY_IN3B2B_MIN_AMOUNT',
                     'required' => false,
                 ],
                 [
                     'type' => 'text',
                     'class' => 'fixed-width-sm',
                     'prefix' => $this->context->currency->sign,
-                    'label' => $this->l('Maximum order amount for iDEAL+in3'),
-                    'name' => 'MULTISAFEPAY_IN3_MAX_AMOUNT',
+                    'label' => $this->l('Maximum order amount for in3'),
+                    'name' => 'MULTISAFEPAY_IN3B2B_MAX_AMOUNT',
                     'required' => false,
                 ],
                 [
                     'type' => 'switch',
                     'label' => $this->l('Use modal for direct checkout'),
-                    'name' => 'MULTISAFEPAY_IN3_DIRECT',
+                    'name' => 'MULTISAFEPAY_IN3B2B_USE_COMPONENT',
                     'required' => true,
                     'values' => [
                         [
