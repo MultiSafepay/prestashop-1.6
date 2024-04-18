@@ -28,7 +28,7 @@ class MultisafepayGiropay extends PaymentModule
         }
         $this->name = 'multisafepaygiropay';
         $this->tab = 'payments_gateways';
-        $this->version = '3.12.0';
+        $this->version = '3.13.0';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;

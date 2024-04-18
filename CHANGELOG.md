@@ -6,6 +6,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.13.0
+Release date: Apr 18th, 2024
+
+### Added
++ DAVAMS-763: Add in3 B2B payment method
++ DAVAMS-683: Add Multibanco payment method
++ DAVAMS-682: Add MB WAY payment method
++ DAVAMS-655: Add BNPL_MF payment method
++ DAVAMS-534: Add support for Template ID in the Payment Component
+
+### Changed
++ DAVAMS-744: Rebranding in3 B2C
++ DAVAMS-704: Rebrand in3 payment method name and remove birthday checkout field
+
+### Fixed
++ DAVAMS-751: Fix the 'template_id' setting field within the Payment Components
+
+***
+
 ## 3.12.0
 Release date: Oct 13th, 2023
 
