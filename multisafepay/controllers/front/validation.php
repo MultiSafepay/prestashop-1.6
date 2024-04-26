@@ -26,8 +26,6 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
 
     public function postProcess()
     {
-        $plugin_version = '3.10.0';
-
         if ($this->context->cart->id_customer == 0
             || $this->context->cart->id_address_delivery == 0
             || $this->context->cart->id_address_invoice == 0
@@ -175,6 +173,9 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
 
         $url_prefix = Tools::getShopDomainSsl(true, true) . __PS_BASE_URI__ . 'index.php';
 
+        // Taking the plugin version from the module
+        $module_plugin_version = !empty($this->module->version) ? $this->module->version : 'unknown';
+
         $my_order = [
               'type' => $type,
               'order_id' => $orderid,
@@ -241,7 +242,7 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
               'plugin' => [
                   'shop' => 'PrestaShop',
                   'shop_version' => 'PrestaShop ' . _PS_VERSION_,
-                  'plugin_version' => '(' . $plugin_version . ')',
+                  'plugin_version' => $module_plugin_version,
                   'partner' => '',
                   'shop_root_url' => $url_prefix,
               ],
