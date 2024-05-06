@@ -28,7 +28,7 @@ class Multisafepaysportenfit extends PaymentModule
         }
         $this->name = 'multisafepaysportenfit';
         $this->tab = 'payments_gateways';
-        $this->version = '3.13.0';
+        $this->version = '3.13.1';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;

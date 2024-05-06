@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.13.1
+Release date: Apr 26th, 2024
+
+### Fixed
++ PLGPRSS-506: Fix to get the plugin version taking the module as reference
+
+***
+
 ## 3.13.0
 Release date: Apr 18th, 2024
 

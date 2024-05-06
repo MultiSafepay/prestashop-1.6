@@ -29,7 +29,7 @@ class MultiSafepayAlipay extends PaymentModule
 
         $this->name = 'multisafepayalipay';
         $this->tab = 'payments_gateways';
-        $this->version = '3.13.0';
+        $this->version = '3.13.1';
         $this->author = 'MultiSafepay';
         $this->need_instance = 1;
         $this->ps_versions_compliancy = ['min' => '1.6', 'max' => '1.6'];

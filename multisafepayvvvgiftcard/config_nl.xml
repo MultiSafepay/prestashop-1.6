@@ -2,7 +2,7 @@
 <module>
 	<name>multisafepayvvvgiftcard</name>
 	<displayName><![CDATA[VVV-Bon]]></displayName>
-	<version><![CDATA[3.10.0]]></version>
+	<version><![CDATA[3.13.1]]></version>
 	<description><![CDATA[Accepteer betalingen via MultiSafepay]]></description>
 	<author><![CDATA[MultiSafepay]]></author>
 	<tab><![CDATA[payments_gateways]]></tab>
