@@ -131,15 +131,15 @@ class MultisafepayZinia extends PaymentModule
                 [
                     'type' => 'select',
                     'name' => 'gender',
-                    'label' => 'Gender',
+                    'label' => $this->l('Salutation'),
                     'required' => true,
                     'options' => [
                         [
-                            'name' => 'Mr',
+                            'name' => $this->l('Mr'),
                             'value' => 'mr',
                         ],
                         [
-                            'name' => 'Mrs',
+                            'name' => $this->l('Mrs'),
                             'value' => 'mrs',
                         ],
                     ],

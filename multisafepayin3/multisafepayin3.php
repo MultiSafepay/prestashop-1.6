@@ -130,15 +130,15 @@ class Multisafepayin3 extends PaymentModule
                     'required' => true,
                     'options' => [
                         [
-                            'name' => 'Mr',
+                            'name' => $this->l('Mr'),
                             'value' => 'mr',
                         ],
                         [
-                            'name' => 'Ms',
+                            'name' => $this->l('Ms'),
                             'value' => 'ms',
                         ],
                         [
-                            'name' => 'Miss',
+                            'name' => $this->l('Miss'),
                             'value' => 'miss',
                         ],
                     ],
