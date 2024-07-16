@@ -21,6 +21,9 @@ require_once _PS_MODULE_DIR_ . 'multisafepay/helpers/Autoloader.php';
 
 class MultisafepayAfterpay extends PaymentModule
 {
+    public $fee;
+    public $gatewayTitle;
+
     const DEFAULT_TERMS_URL = 'https://documents.riverty.com/terms_conditions/payment_methods/invoice/nl_en/default';
     const INVOICE_ADDRESS_DE_LOCALE_EN_TERMS_URL = 'https://documents.riverty.com/terms_conditions/payment_methods/invoice/de_en/default';
     const INVOICE_ADDRESS_DE_LOCALE_DE_TERMS_URL = 'https://documents.riverty.com/terms_conditions/payment_methods/invoice/de_de/default';

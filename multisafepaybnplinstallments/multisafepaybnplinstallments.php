@@ -21,6 +21,9 @@ require_once _PS_MODULE_DIR_ . 'multisafepay/helpers/Autoloader.php';
 
 class MultisafepayBNPLInstallments extends PaymentModule
 {
+    public $fee;
+    public $gatewayTitle;
+
     public function __construct()
     {
         if (!Module::isInstalled('multisafepay')) {

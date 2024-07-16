@@ -256,7 +256,7 @@ class MultisafepayValidationModuleFrontController extends ModuleFrontController
             unset($my_order['shopping_cart'], $my_order['checkout_options']);
         }
 
-        if ($paymentComponentData) {
+        if (!empty($paymentComponentData)) {
             $my_order['payment_data'] = [];
             $my_order['payment_data']['payload'] = $paymentComponentData['payload'];
             $my_order['type'] = 'direct';

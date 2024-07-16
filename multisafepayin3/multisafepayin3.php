@@ -21,6 +21,9 @@ require_once _PS_MODULE_DIR_ . 'multisafepay/helpers/Autoloader.php';
 
 class Multisafepayin3 extends PaymentModule
 {
+    public $fee;
+    public $gatewayTitle;
+
     /**
      * Multisafepay iDEAL+in3 constructor.
      */

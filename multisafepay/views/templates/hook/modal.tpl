@@ -111,7 +111,7 @@
                                     {if $field.type === 'issuers'}
                                         <label for="{$field.name|escape:'htmlall':'UTF-8'}">
                                             <p class="{if $field.required}required{/if}">{l s=$field.label|escape:'htmlall':'UTF-8' mod='multisafepay'}</p>
-                                            <select name="{$field.name|escape:'htmlall':'UTF-8'}" class="{if $field.select2}select2{/if}" required="{$field.required|escape:'htmlall':'UTF-8'}">
+                                            <select name="{$field.name|escape:'htmlall':'UTF-8'}" class="{if isset($field.select2) && $field.select2}select2{/if}" required="{$field.required|escape:'htmlall':'UTF-8'}">
                                                 {foreach from=$field.options item=option}
                                                     <option value="{$option->code|escape:'htmlall':'UTF-8'}">{$option->description|escape:'htmlall':'UTF-8'}</option>
                                                 {/foreach}

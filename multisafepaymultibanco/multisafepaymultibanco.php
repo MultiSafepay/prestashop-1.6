@@ -22,6 +22,7 @@ require_once _PS_MODULE_DIR_ . 'multisafepay/helpers/Autoloader.php';
 class MultiSafepayMultibanco extends PaymentModule
 {
     public $fee;
+    public $gatewayTitle;
 
     public function __construct()
     {
