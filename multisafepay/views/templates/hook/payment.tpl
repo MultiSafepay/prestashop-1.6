@@ -18,7 +18,7 @@
 *}
 <div class="row">
     <div class="col-xs-12">
-        {if !$direct && !$useTokenization}
+        {if ($gateway == 'IDEAL') || (!$direct && !$useTokenization)}
             <form
                     id="{$gateway|escape:'htmlall':'UTF-8'}"
                     action="{$link->getModuleLink({$moduleLink|escape:'htmlall':'UTF-8'}, 'validation', [], true)|escape:'htmlall':'UTF-8'}"
@@ -77,6 +77,6 @@
     </div>
 </div>
 
-{if $direct || $useTokenization}
+{if ($gateway != 'IDEAL') && ($direct || $useTokenization)}
     {include file="$main_path_ssl/modules/multisafepay/views/templates/hook/modal.tpl"}
 {/if}

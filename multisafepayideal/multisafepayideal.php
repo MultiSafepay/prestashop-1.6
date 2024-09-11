@@ -97,19 +97,6 @@ class MultiSafepayIdeal extends PaymentModule
         $msp->setApiKey(Configuration::get('MULTISAFEPAY_API_KEY'));
         $msp->setApiUrl(Configuration::get('MULTISAFEPAY_SANDBOX'));
 
-        try {
-            $issuers = $msp->issuers->get();
-        } catch (Exception $e) {
-            $issuers = [];
-            $msg = $this->l('Error:') . htmlspecialchars($e->getMessage());
-            PrestaShopLogger::addLog($msg, 4, '', 'MultiSafepay', 'MSP', 'MSP');
-        }
-
-        $direct = true;
-        if ($this->context->api_access === '0') {
-            $direct = false;
-        }
-
         $this->context->smarty->clearAssign(MultiSafepay::SMARTY_VARIABLES_TO_UNASSIGN);
 
         $this->context->smarty->assign([
@@ -119,17 +106,8 @@ class MultiSafepayIdeal extends PaymentModule
             'gateway' => $this->gateway,
             'name' => $this->displayName,
             'fee' => $this->fee,
-            'direct' => $direct,
+            'direct' => true,
             'useTokenization' => false,
-            'fields' => [
-                [
-                    'type' => 'issuers',
-                    'name' => 'issuers',
-                    'label' => 'Please select your issuer',
-                    'required' => true,
-                    'options' => $issuers,
-                ],
-            ],
         ]);
 
         return $this->display(__FILE__, 'payment.tpl');

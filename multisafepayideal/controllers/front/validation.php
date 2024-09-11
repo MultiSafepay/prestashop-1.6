@@ -12,9 +12,7 @@ class MultisafepayIdealValidationModuleFrontController extends MultisafepayValid
 {
     public function postProcess()
     {
-        $this->type = Tools::getValue('direct') ? 'direct' : 'redirect';
-        $this->gatewayInfo = ['issuer_id' => Tools::getValue('issuers')];
-
+        $this->type = 'direct';
         parent::postProcess();
     }
 }
