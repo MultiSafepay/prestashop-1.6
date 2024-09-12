@@ -26,7 +26,7 @@ class Multisafepayyourgift extends PaymentModule
         if (!Module::isInstalled('multisafepay')) {
             return;
         }
-        $this->version = '3.13.1';
+        $this->version = '3.14.0';
         $this->tab = 'payments_gateways';
         $this->name = 'multisafepayyourgift';
         $this->author = 'MultiSafepay';

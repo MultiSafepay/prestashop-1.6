@@ -31,7 +31,7 @@ class MultisafepayDirdeb extends PaymentModule
         }
         $this->name = 'multisafepaydirdeb';
         $this->tab = 'payments_gateways';
-        $this->version = '3.13.1';
+        $this->version = '3.14.0';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;

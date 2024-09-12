@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.14.0
+Release date: Sep 12th, 2024
+
+### Fixed
++ PLGPRSS-501: Fix gender fields are not translatable
++ PLGPRSS-500: Fix PHP warnings
+
+### Removed
++ PLGPRSS-510: Remove issuers from iDEAL
++ PLGPRSS-509: Remove composer.json file from release package
+
+### Changed
++ DAVAMS-798: Rebrand Afterpay - Riverty Logo
+
+***
+
 ## 3.13.1
 Release date: May 7th, 2024
 

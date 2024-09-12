@@ -28,7 +28,7 @@ class Multisafepaydegrotespeelgoedwinkel extends PaymentModule
         }
         $this->name = 'multisafepaydegrotespeelgoedwinkel';
         $this->tab = 'payments_gateways';
-        $this->version = '3.13.1';
+        $this->version = '3.14.0';
         $this->author = 'MultiSafepay';
 
         $this->need_instance = 1;
