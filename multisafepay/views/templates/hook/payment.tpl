@@ -18,14 +18,14 @@
 *}
 <div class="row">
     <div class="col-xs-12">
-        {if ($gateway == 'IDEAL') || (!$direct && !$useTokenization)}
+        {if ($gateway == 'IDEAL') || ($gateway == 'BIZUM') || (!$direct && !$useTokenization)}
             <form
                     id="{$gateway|escape:'htmlall':'UTF-8'}"
                     action="{$link->getModuleLink({$moduleLink|escape:'htmlall':'UTF-8'}, 'validation', [], true)|escape:'htmlall':'UTF-8'}"
                     method="post"
                     class="payment-module-form"
             >
-                <input type="hidden" name="gateway" value="$gateway"/>
+                <input type="hidden" name="gateway" value="{$gateway|escape:'htmlall':'UTF-8'}"/>
                 <p class="payment_module">
                     <a
                             class="multisafepay-payment-module"
@@ -77,6 +77,6 @@
     </div>
 </div>
 
-{if ($gateway != 'IDEAL') && ($direct || $useTokenization)}
+{if ($gateway != 'IDEAL') && ($gateway != 'BIZUM') && ($direct || $useTokenization)}
     {include file="$main_path_ssl/modules/multisafepay/views/templates/hook/modal.tpl"}
 {/if}

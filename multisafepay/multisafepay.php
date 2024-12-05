@@ -28,7 +28,7 @@ class MultiSafepay extends PaymentModule
 {
     const MULTISAFEPAY_COMPONENT_JS_URL = 'https://pay.multisafepay.com/sdk/components/v2/components.js';
     const MULTISAFEPAY_COMPONENT_CSS_URL = 'https://pay.multisafepay.com/sdk/components/v2/components.css';
-    const SMARTY_VARIABLES_TO_UNASSIGN = ['direct', 'birthday', 'gender', 'phone', 'bankaccount', 'issuers', 'fee', 'isComponent', 'useTokenization', 'multisafepay_tokens'];
+    const SMARTY_VARIABLES_TO_UNASSIGN = ['bankaccount', 'birthday', 'direct', 'fee', 'fields', 'gender', 'isComponent', 'issuers', 'multisafepay_tokens', 'phone', 'useTokenization'];
 
     public function __construct()
     {

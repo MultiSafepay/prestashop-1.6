@@ -68,7 +68,7 @@
                                     </label>
                                 </div>
                             </div>
-                        {else}
+                        {elseif isset($fields)}
                             <div class="multisafepay-modal-fields">
                                 {foreach from=$fields item=field}
                                     {if $field.type === "text"}
