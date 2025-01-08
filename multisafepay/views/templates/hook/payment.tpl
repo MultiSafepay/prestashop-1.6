@@ -18,7 +18,8 @@
 *}
 <div class="row">
     <div class="col-xs-12">
-        {if ($gateway == 'IDEAL') || ($gateway == 'BIZUM') || (!$direct && !$useTokenization)}
+        {assign var='directMethods' value=['BIZUM', 'IDEAL', 'IN3']}
+        {if $gateway|in_array:$directMethods || (!$direct && !$useTokenization)}
             <form
                     id="{$gateway|escape:'htmlall':'UTF-8'}"
                     action="{$link->getModuleLink({$moduleLink|escape:'htmlall':'UTF-8'}, 'validation', [], true)|escape:'htmlall':'UTF-8'}"
@@ -77,6 +78,6 @@
     </div>
 </div>
 
-{if ($gateway != 'IDEAL') && ($gateway != 'BIZUM') && ($direct || $useTokenization)}
+{if !($gateway|in_array:$directMethods) && ($direct || $useTokenization)}
     {include file="$main_path_ssl/modules/multisafepay/views/templates/hook/modal.tpl"}
 {/if}

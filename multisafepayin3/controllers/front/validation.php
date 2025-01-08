@@ -12,13 +12,8 @@ class MultisafepayIn3ValidationModuleFrontController extends MultisafepayValidat
 {
     public function postProcess()
     {
-        $this->type = 'redirect';
-
-        if (Configuration::get('MULTISAFEPAY_IN3_DIRECT')) {
-            $this->type = 'direct';
-            $this->getGatewayInfo();
-        }
-
+        $this->type = 'direct';
+        $this->getGatewayInfo();
         parent::postProcess();
     }
 
@@ -33,26 +28,14 @@ class MultisafepayIn3ValidationModuleFrontController extends MultisafepayValidat
             Tools::redirectLink(__PS_BASE_URI__ . 'order.php?step=1');
         }
 
-        if (Tools::getValue('gender') != '') {
-            $this->context->cookie->__set('gender', Tools::getValue('gender'));
-        }
-
         if (Tools::getValue('phone') != '') {
             $this->context->cookie->__set('phone', Tools::getValue('phone'));
-        }
-
-        if (Tools::getValue('birthday') != '') {
-            $birthday = preg_replace("/(^(\d{2}).(\d{2}).(\d{4}))/", '$4-$3-$2', Tools::getValue('birthday'));
-            $this->context->cookie->__set('birthday', $birthday);
         }
 
         $this->gatewayInfo = [
             'referrer' => $_SERVER['HTTP_REFERER'],
             'user_agent' => $_SERVER['HTTP_USER_AGENT'],
-            'birthday' => $this->context->cookie->birthday,
-            'phone' => $this->context->cookie->phone,
-            'email' => $customer->email,
-            'gender' => $this->context->cookie->gender,
+            'phone' => $this->context->cookie->phone ?: '',
         ];
     }
 }

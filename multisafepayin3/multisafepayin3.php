@@ -71,7 +71,6 @@ class Multisafepayin3 extends PaymentModule
         }
         Configuration::updateValue('MULTISAFEPAY_IN3_MIN_AMOUNT', '100');
         Configuration::updateValue('MULTISAFEPAY_IN3_MAX_AMOUNT', '3000');
-        Configuration::updateValue('MULTISAFEPAY_IN3_DIRECT', true);
 
         return true;
     }
@@ -103,7 +102,7 @@ class Multisafepayin3 extends PaymentModule
 
         $minAmount = (int) Configuration::get('MULTISAFEPAY_IN3_MIN_AMOUNT');
         $maxAmount = (int) Configuration::get('MULTISAFEPAY_IN3_MAX_AMOUNT');
-        $direct = Configuration::get('MULTISAFEPAY_IN3_DIRECT');
+        $direct = true;
 
         if ($this->context->api_access === '0') {
             $direct = false;
@@ -125,28 +124,6 @@ class Multisafepayin3 extends PaymentModule
             'fee' => $this->fee,
             'direct' => $direct,
             'useTokenization' => false,
-            'fields' => [
-                [
-                    'type' => 'select',
-                    'name' => 'gender',
-                    'label' => $this->l('Salutation'),
-                    'required' => true,
-                    'options' => [
-                        [
-                            'name' => $this->l('Mr'),
-                            'value' => 'mr',
-                        ],
-                        [
-                            'name' => $this->l('Ms'),
-                            'value' => 'ms',
-                        ],
-                        [
-                            'name' => $this->l('Miss'),
-                            'value' => 'miss',
-                        ],
-                    ],
-                ],
-            ],
         ]);
 
         return $this->display(__FILE__, 'payment.tpl');
@@ -166,7 +143,6 @@ class Multisafepayin3 extends PaymentModule
         if (Tools::isSubmit('submit' . $this->name)) {
             Configuration::updateValue('MULTISAFEPAY_IN3_MIN_AMOUNT', Tools::getValue('MULTISAFEPAY_IN3_MIN_AMOUNT'));
             Configuration::updateValue('MULTISAFEPAY_IN3_MAX_AMOUNT', Tools::getValue('MULTISAFEPAY_IN3_MAX_AMOUNT'));
-            Configuration::updateValue('MULTISAFEPAY_IN3_DIRECT', Tools::getValue('MULTISAFEPAY_IN3_DIRECT'));
         }
 
         $default_lang = (int) Configuration::get('PS_LANG_DEFAULT');
@@ -200,7 +176,6 @@ class Multisafepayin3 extends PaymentModule
 
         $helper->fields_value['MULTISAFEPAY_IN3_MIN_AMOUNT'] = Configuration::get('MULTISAFEPAY_IN3_MIN_AMOUNT');
         $helper->fields_value['MULTISAFEPAY_IN3_MAX_AMOUNT'] = Configuration::get('MULTISAFEPAY_IN3_MAX_AMOUNT');
-        $helper->fields_value['MULTISAFEPAY_IN3_DIRECT'] = Configuration::get('MULTISAFEPAY_IN3_DIRECT');
 
         $fields_form = [];
         $fields_form[0]['form'] = [
@@ -224,24 +199,6 @@ class Multisafepayin3 extends PaymentModule
                     'label' => $this->l('Maximum order amount for iDEAL+in3'),
                     'name' => 'MULTISAFEPAY_IN3_MAX_AMOUNT',
                     'required' => false,
-                ],
-                [
-                    'type' => 'switch',
-                    'label' => $this->l('Use modal for direct checkout'),
-                    'name' => 'MULTISAFEPAY_IN3_DIRECT',
-                    'required' => true,
-                    'values' => [
-                        [
-                            'id' => 'direct',
-                            'value' => true,
-                            'label' => $this->l('Use modal'),
-                        ],
-                        [
-                            'id' => 'redirect',
-                            'value' => false,
-                            'label' => $this->l('Do not use modal'),
-                        ],
-                    ],
                 ],
             ],
             'submit' => [
