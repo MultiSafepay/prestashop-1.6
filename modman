@@ -1,6 +1,5 @@
 multisafepay modules/multisafepay
 multisafepayafterpay modules/multisafepayafterpay
-multisafepayalipay modules/multisafepayalipay
 multisafepayalipayplus modules/multisafepayalipayplus
 multisafepayamazonpay modules/multisafepayamazonpay
 multisafepayamex modules/multisafepayamex
