@@ -12,7 +12,7 @@ class MultisafepayFcoValidationModuleFrontController extends MultisafepayValidat
 {
     public function postProcess()
     {
-        $this->plugin_version = '3.14.0';
+        $this->plugin_version = '3.15.0';
 
         $this->api = Configuration::get('MULTISAFEPAY_FCO_API_KEY');
         $this->mode = Configuration::get('MULTISAFEPAY_FCO_SANDBOX');

@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ***
 
+## 3.15.0
+Release date: May 16th, 2025
+
+### Added
++ DAVAMS-859: Add Billink
++ DAVAMS-805: Add BIZUM
+
+### Removed
++ DAVAMS-894: Remove ALIPAY payment method
++ DAVAMS-816: Remove gender checkout field from iDEAL in3
+
+***
+
 ## 3.14.0
 Release date: Sep 12th, 2024
 
